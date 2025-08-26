@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 export type CookiePreferences = {
   essential: boolean;
@@ -68,13 +68,27 @@ export function useCookiePreferences() {
     return hasConsent('essential');
   }, [hasConsent]);
 
-  return {
-    preferences,
-    isLoaded,
-    updatePreferences,
-    hasConsent,
-    canUseAnalytics,
-    canUsePreferences,
-    canUseEssential,
-  };
+  // Memoize the return object to prevent unnecessary re-renders
+  const result = useMemo(
+    () => ({
+      preferences,
+      isLoaded,
+      updatePreferences,
+      hasConsent,
+      canUseAnalytics,
+      canUsePreferences,
+      canUseEssential,
+    }),
+    [
+      preferences,
+      isLoaded,
+      updatePreferences,
+      hasConsent,
+      canUseAnalytics,
+      canUsePreferences,
+      canUseEssential,
+    ]
+  );
+
+  return result;
 }

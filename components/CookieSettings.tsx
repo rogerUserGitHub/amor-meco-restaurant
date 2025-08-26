@@ -12,9 +12,8 @@ export default function CookieSettings() {
   const [showSettings, setShowSettings] = useState(false);
   const [localPreferences, setLocalPreferences] = useState(preferences);
 
-  const handlePreferenceChange = (type: keyof typeof preferences) => {
+  const handlePreferenceChange = (type: 'analytics' | 'preferences') => {
     if (!localPreferences) return;
-    if (type === 'essential') return; // Essential cannot be disabled
 
     setLocalPreferences((prev) => ({
       ...prev!,

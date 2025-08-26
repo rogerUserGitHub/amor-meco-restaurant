@@ -8,9 +8,24 @@ import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import { Suspense } from 'react';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import CookieBanner from '@/components/CookieBanner';
-import Analytics from '@/components/Analytics';
-import CookieSettings from '@/components/CookieSettings';
+import dynamic from 'next/dynamic';
+import { Toaster } from 'react-hot-toast';
+
+// Dynamic imports for better performance
+const CookieBanner = dynamic(() => import('@/components/CookieBanner'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const Analytics = dynamic(() => import('@/components/Analytics'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const CookieSettings = dynamic(() => import('@/components/CookieSettings'), {
+  ssr: false,
+  loading: () => null,
+});
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -164,6 +179,19 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+
+        {/* Performance optimizations */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="dns-prefetch"
+          href="https://tesxjtouiayyyeglqnmr.supabase.co"
+        />
+
         <meta
           name="theme-color"
           content="#607124"
@@ -197,6 +225,29 @@ export default function RootLayout({
                   <CookieBanner />
                   <Analytics />
                   <CookieSettings />
+                  <Toaster
+                    position="top-right"
+                    toastOptions={{
+                      duration: 4000,
+                      style: {
+                        background: 'var(--color-background)',
+                        color: 'var(--color-text)',
+                        border: '1px solid var(--color-border)',
+                      },
+                      success: {
+                        iconTheme: {
+                          primary: '#10B981',
+                          secondary: '#FFFFFF',
+                        },
+                      },
+                      error: {
+                        iconTheme: {
+                          primary: '#EF4444',
+                          secondary: '#FFFFFF',
+                        },
+                      },
+                    }}
+                  />
                 </div>
               </Suspense>
             </ErrorBoundary>

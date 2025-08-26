@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from './LanguageProvider';
 import { useTheme } from './ThemeProvider';
 import { Menu, X, Sun, Moon, Globe, Utensils, Phone } from 'lucide-react';
@@ -44,30 +44,36 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrolled = window.scrollY > 50;
+      setIsScrolled(scrolled);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    // Use passive listener for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavigation = (section: string) => {
-    if (isHomePage) {
-      // If we're on the home page, scroll to the section
-      const element = document.getElementById(section);
-      if (element) {
-        const navHeight = 80;
-        const elementPosition = element.offsetTop - navHeight;
-        window.scrollTo({
-          top: elementPosition,
-          behavior: 'smooth',
-        });
+  const handleNavigation = useCallback(
+    (section: string) => {
+      if (isHomePage) {
+        // If we're on the home page, scroll to the section
+        const element = document.getElementById(section);
+        if (element) {
+          const navHeight = 80;
+          const elementPosition = element.offsetTop - navHeight;
+          window.scrollTo({
+            top: elementPosition,
+            behavior: 'smooth',
+          });
+        }
+      } else {
+        // If we're on another page, navigate to home page with hash
+        router.push(`/#${section}`);
       }
-    } else {
-      // If we're on another page, navigate to home page with hash
-      router.push(`/#${section}`);
-    }
-    setIsOpen(false); // Close mobile menu
-  };
+      setIsOpen(false); // Close mobile menu
+    },
+    [isHomePage, router]
+  );
 
   const navItems = [
     { section: 'menu', label: t('nav.menu') },

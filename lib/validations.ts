@@ -56,7 +56,10 @@ export const createContactFormSchema = (t: (key: string) => string) =>
     phone: yup
       .string()
       .optional()
-      .matches(SECURITY_PATTERNS.PHONE_PATTERN, t('validation.phone.invalid'))
+      .test('phone-format', t('validation.phone.invalid'), (value) => {
+        if (!value || value.trim() === '') return true; // Allow empty values
+        return SECURITY_PATTERNS.PHONE_PATTERN.test(value);
+      })
       .test('no-sql-injection', t('validation.security.invalid'), (value) => {
         if (!value) return true;
         return !SECURITY_PATTERNS.SQL_INJECTION_PATTERN.test(value);
@@ -142,10 +145,10 @@ export const contactFormSchema = yup.object({
   phone: yup
     .string()
     .optional()
-    .matches(
-      SECURITY_PATTERNS.PHONE_PATTERN,
-      'Please enter a valid phone number'
-    )
+    .test('phone-format', 'Please enter a valid phone number', (value) => {
+      if (!value || value.trim() === '') return true; // Allow empty values
+      return SECURITY_PATTERNS.PHONE_PATTERN.test(value);
+    })
     .test('no-sql-injection', 'Invalid characters detected', (value) => {
       if (!value) return true;
       return !SECURITY_PATTERNS.SQL_INJECTION_PATTERN.test(value);

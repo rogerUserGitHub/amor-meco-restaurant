@@ -1,6 +1,13 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
 import { useRouter } from 'next/router';
 import { useCookiePreferences } from '../hooks/useCookiePreferences';
 
@@ -157,6 +164,11 @@ const translations = {
     'contact.message': 'Mensagem',
     'contact.sendMessage': 'Enviar Mensagem',
     'contact.sending': 'A Enviar...',
+    'contact.successMessage': 'Mensagem enviada com sucesso!',
+    'contact.errorMessage':
+      'Por favor, verifique o formulário e tente novamente.',
+    'contact.submissionError':
+      'Falha ao enviar mensagem. Tente novamente mais tarde.',
     // Cookie Banner
     'cookies.title': 'Cookies e Privacidade',
     'cookies.description':
@@ -319,6 +331,10 @@ const translations = {
     'contact.message': 'Bericht',
     'contact.sendMessage': 'Bericht Versturen',
     'contact.sending': 'Versturen...',
+    'contact.successMessage': 'Bericht succesvol verzonden!',
+    'contact.errorMessage': 'Controleer het formulier en probeer het opnieuw.',
+    'contact.submissionError':
+      'Bericht verzenden mislukt. Probeer het later opnieuw.',
     // Cookie Banner
     'cookies.title': 'Cookies en Privacy',
     'cookies.description':
@@ -476,6 +492,10 @@ const translations = {
     'contact.message': 'Message',
     'contact.sendMessage': 'Send Message',
     'contact.sending': 'Sending...',
+    'contact.successMessage': 'Message sent successfully!',
+    'contact.errorMessage': 'Please check the form and try again.',
+    'contact.submissionError':
+      'Failed to send message. Please try again later.',
     // Cookie Banner
     'cookies.title': 'Cookies & Privacy',
     'cookies.description':
@@ -636,6 +656,11 @@ const translations = {
     'contact.message': 'Mensaje',
     'contact.sendMessage': 'Enviar Mensaje',
     'contact.sending': 'Enviando...',
+    'contact.successMessage': '¡Mensaje enviado con éxito!',
+    'contact.errorMessage':
+      'Por favor, revise el formulario e inténtelo de nuevo.',
+    'contact.submissionError':
+      'Error al enviar mensaje. Inténtelo de nuevo más tarde.',
     // Cookie Banner
     'cookies.title': 'Cookies y Privacidad',
     'cookies.description':
@@ -675,21 +700,26 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, [isLoaded, preferences]);
 
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    // Only save to localStorage if preferences cookies are allowed
-    if (preferences?.preferences) {
-      localStorage.setItem('language', lang);
-    }
-  };
+  const setLanguage = useCallback(
+    (lang: Language) => {
+      setLanguageState(lang);
+      // Only save to localStorage if preferences cookies are allowed
+      if (preferences?.preferences) {
+        localStorage.setItem('language', lang);
+      }
+    },
+    [preferences?.preferences]
+  );
 
-  const t = (key: string): string => {
-    return (
-      translations[language][
-        key as keyof (typeof translations)[typeof language]
-      ] || key
-    );
-  };
+  const t = useMemo(() => {
+    return (key: string): string => {
+      return (
+        translations[language][
+          key as keyof (typeof translations)[typeof language]
+        ] || key
+      );
+    };
+  }, [language]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>

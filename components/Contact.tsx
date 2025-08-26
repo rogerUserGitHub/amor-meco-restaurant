@@ -11,9 +11,11 @@ import {
   Instagram,
   Facebook,
 } from 'lucide-react';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { createContactFormSchema, ContactFormData } from '../lib/validations';
 import { extractValidationErrors, FormErrors } from '../lib/validationUtils';
+import { submitContactForm } from '../lib/supabase';
+import toast from 'react-hot-toast';
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -69,8 +71,10 @@ export default function Contact() {
         throw new Error('Message is too long');
       }
 
-      // Handle form submission with sanitized data
-      console.log('Form submitted:', validatedData);
+      // Submit to Supabase Edge Function
+      const result = await submitContactForm({
+        ...validatedData,
+      });
 
       // Reset form after successful submission
       setFormData({
@@ -81,70 +85,102 @@ export default function Contact() {
         message: '',
       });
 
-      // Show success message (you can add a toast notification here)
-      alert('Message sent successfully!');
-    } catch (validationErrors) {
-      const newErrors = extractValidationErrors(validationErrors);
-      setErrors(newErrors);
+      // Show success toast
+      toast.success(
+        t('contact.successMessage') || 'Message sent successfully!'
+      );
+    } catch (error: any) {
+      // Check if it's a validation error
+      if (error?.name === 'ValidationError' || error?.errors) {
+        const newErrors = extractValidationErrors(error);
+        setErrors(newErrors);
+        toast.error(
+          t('contact.errorMessage') || 'Please check the form and try again.'
+        );
+      } else {
+        // Handle submission errors
+        console.error('Form submission error:', error);
+        toast.error(
+          t('contact.submissionError') ||
+            'Failed to send message. Please try again later.'
+        );
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    const newFormData = {
-      ...formData,
-      [name]: value,
-    };
+  const handleChange = useCallback(
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >
+    ) => {
+      const { name, value } = e.target;
+      const newFormData = {
+        ...formData,
+        [name]: value,
+      };
 
-    setFormData(newFormData);
+      setFormData(newFormData);
 
-    // Clear previous timeout
-    if (validationTimeout) {
-      clearTimeout(validationTimeout);
-    }
+      // Clear previous timeout
+      if (validationTimeout) {
+        clearTimeout(validationTimeout);
+      }
 
-    // Set new timeout for validation (debounced)
-    const timeout = setTimeout(async () => {
-      try {
-        // Validate only the current field
-        await contactFormSchema.validateAt(name, newFormData);
+      // Set new timeout for validation (debounced)
+      const timeout = setTimeout(async () => {
+        try {
+          // Skip validation for empty phone field
+          if (name === 'phone' && (!value || value.trim() === '')) {
+            setErrors((prev) => ({
+              ...prev,
+              [name]: '',
+            }));
+            return;
+          }
 
-        // Clear error if validation passes
-        setErrors((prev) => ({
-          ...prev,
-          [name]: '',
-        }));
-      } catch (validationError) {
-        // Set error for the current field
-        if (validationError instanceof Error) {
-          console.log(`Validation error for ${name}:`, validationError.message);
+          // Validate only the current field
+          await contactFormSchema.validateAt(name, newFormData);
+
+          // Clear error if validation passes
           setErrors((prev) => ({
             ...prev,
-            [name]: validationError.message,
+            [name]: '',
           }));
+        } catch (validationError) {
+          // Set error for the current field
+          if (validationError instanceof Error) {
+            setErrors((prev) => ({
+              ...prev,
+              [name]: validationError.message,
+            }));
+          }
         }
-      }
-    }, 300); // 300ms delay
+      }, 500); // Increased delay to 500ms for better performance
 
-    setValidationTimeout(timeout);
-  };
+      setValidationTimeout(timeout);
+    },
+    [formData, validationTimeout, contactFormSchema]
+  );
 
-  const openingHours = [
-    { day: 'Monday', hours: 'Closed' },
-    { day: 'Tuesday - Friday', hours: '12:00 - 15:00, 18:00 - 23:00' },
-    { day: 'Saturday', hours: '12:00 - 15:00, 18:00 - 23:00' },
-    { day: 'Sunday', hours: '12:00 - 15:00, 18:00 - 22:00' },
-  ];
+  const openingHours = useMemo(
+    () => [
+      { day: 'Monday', hours: 'Closed' },
+      { day: 'Tuesday - Friday', hours: '12:00 - 15:00, 18:00 - 23:00' },
+      { day: 'Saturday', hours: '12:00 - 15:00, 18:00 - 23:00' },
+      { day: 'Sunday', hours: '12:00 - 15:00, 18:00 - 22:00' },
+    ],
+    []
+  );
 
   // Google Maps embed URL for the actual address
-  const googleMapsUrl =
-    'https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=R.+Praia+Moinho+de+Baixo+1,+2970-074,+Portugal';
+  const googleMapsUrl = useMemo(
+    () =>
+      'https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=R.+Praia+Moinho+de+Baixo+1,+2970-074,+Portugal',
+    []
+  );
 
   return (
     <div className="container-custom">
@@ -237,7 +273,8 @@ export default function Contact() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {t('contact.phone')}
+                  {t('contact.phone')}{' '}
+                  <span className="text-gray-500 text-xs">(Optional)</span>
                 </label>
                 <input
                   type="tel"
@@ -250,7 +287,7 @@ export default function Contact() {
                       ? 'border-red-500 focus:ring-red-500'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}
-                  placeholder="+351 123 456 789"
+                  placeholder="+351 123 456 789 (optional)"
                 />
                 {errors.phone && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">

@@ -13,6 +13,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.56.0",
     "clsx": "^2.0.0",
+    "critters": "^0.0.25",
     "framer-motion": "^10.16.0",
     "i18next": "^23.0.0",
     "lucide-react": "^0.292.0",
@@ -21,6 +22,7 @@
     "puppeteer": "^24.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.6.0",
     "react-i18next": "^13.0.0",
     "react-intersection-observer": "^9.5.0",
     "swiper": "^11.0.0",

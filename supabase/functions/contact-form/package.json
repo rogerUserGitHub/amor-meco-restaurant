@@ -1,0 +1,19 @@
+{
+  "name": "contact-form-edge-function",
+  "version": "1.0.0",
+  "description": "Supabase Edge Function for handling contact form submissions",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "supabase",
+    "edge-function",
+    "contact-form"
+  ],
+  "author": "Amor Meco Restaurant",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0"
+  }
+}
