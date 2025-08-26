@@ -1,0 +1,301 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --gold: hsl(41 85% 65%);
+    --gold-dark: hsl(41 75% 55%);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-bg-light text-text-dark dark:bg-bg-dark dark:text-text-light;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quiverleaf CF', serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-light text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
+  }
+  
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold to-gold-dark bg-clip-text text-transparent;
+  }
+  
+  .bg-gradient-gold {
+    @apply bg-gradient-to-r from-gold to-gold-dark;
+  }
+  
+  .floating-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-light;
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Social Media Icons Animation */
+.social-wrapper {
+  display: inline-flex;
+  list-style: none;
+  height: auto;
+  width: 100%;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  justify-content: center;
+}
+
+.social-wrapper .icon {
+  position: relative;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.social-wrapper .icon a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #666;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.social-wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #fff;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.social-wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #fff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.social-wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.social-wrapper .icon:hover span,
+.social-wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.social-wrapper .facebook:hover,
+.social-wrapper .facebook:hover .tooltip,
+.social-wrapper .facebook:hover .tooltip::before {
+  background: #1877f2;
+  color: #fff;
+}
+
+.social-wrapper .twitter:hover,
+.social-wrapper .twitter:hover .tooltip,
+.social-wrapper .twitter:hover .tooltip::before {
+  background: #1da1f2;
+  color: #fff;
+}
+
+.social-wrapper .instagram:hover,
+.social-wrapper .instagram:hover .tooltip,
+.social-wrapper .instagram:hover .tooltip::before {
+  background: #e4405f;
+  color: #fff;
+}
+
+/* Dark mode support for social icons */
+.dark .social-wrapper .icon {
+  background: #374151;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .social-wrapper .icon a {
+  color: #d1d5db;
+}
+
+.dark .social-wrapper .tooltip {
+  background: #374151;
+  color: #fff;
+}
+
+.dark .social-wrapper .tooltip::before {
+  background: #374151;
+}
+
+/* Dark mode support for social icons */
+.dark .social-wrapper .icon {
+  background: #374151;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .social-wrapper .icon a {
+  color: #d1d5db;
+}
+
+.dark .social-wrapper .tooltip {
+  background: #374151;
+  color: #fff;
+}
+
+.dark .social-wrapper .tooltip::before {
+  background: #374151;
+}
+
+/* Orbiting Spark Animation for Reservations Button */
+@keyframes orbit-spark {
+  0% {
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  25% {
+    top: 0;
+    left: 100%;
+  }
+  50% {
+    top: 100%;
+    left: 100%;
+  }
+  75% {
+    top: 100%;
+    left: 0;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+}
+
+.btn-reservations {
+  @apply bg-primary hover:bg-primary-light text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl relative overflow-visible;
+}
+
+.btn-reservations::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 1) 0%, rgba(212, 175, 55, 0.9) 30%, rgba(212, 175, 55, 0.6) 60%, transparent 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 8px rgba(212, 175, 55, 1),
+    0 0 16px rgba(212, 175, 55, 0.6),
+    0 0 24px rgba(212, 175, 55, 0.3);
+  animation: orbit-spark 4s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
