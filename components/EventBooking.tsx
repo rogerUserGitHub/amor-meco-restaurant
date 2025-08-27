@@ -32,7 +32,7 @@ export default function EventBooking() {
 
   const handleBookNow = () => {
     // Navigate to reservations section
-    const reservationsSection = document.getElementById('reservations');
+    const reservationsSection = document.getElementById('contact');
     if (reservationsSection) {
       const navHeight = 80;
       const elementPosition = reservationsSection.offsetTop - navHeight;

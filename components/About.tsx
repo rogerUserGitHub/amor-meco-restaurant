@@ -87,7 +87,7 @@ export default function About() {
       </div>
 
       {/* Story Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -108,9 +108,6 @@ export default function About() {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-3xl font-quiverleaf font-bold text-primary mb-6">
-            {t('about.ourStory')}
-          </h3>
           <div className="space-y-4 text-gray-600 dark:text-gray-300">
             <p>{t('about.story1')}</p>
             <p>{t('about.story2')}</p>

@@ -139,35 +139,6 @@ export default function Reviews() {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* CTA Section */}
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            {t('reviews.joinSatisfiedCustomers')}
-          </p>
-          <button
-            onClick={() => {
-              const element = document.getElementById('reservations');
-              if (element) {
-                const navHeight = 80;
-                const elementPosition = element.offsetTop - navHeight;
-                window.scrollTo({
-                  top: elementPosition,
-                  behavior: 'smooth',
-                });
-              }
-            }}
-            className="btn-primary"
-          >
-            {t('reviews.makeReservation')}
-          </button>
-        </motion.div>
       </div>
     </section>
   );

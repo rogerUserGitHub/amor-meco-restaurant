@@ -39,7 +39,7 @@ export default function CookieSettings() {
       {/* Settings Button */}
       <button
         onClick={() => setShowSettings(true)}
-        className="fixed bottom-4 right-4 z-40 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        className="fixed bottom-4 left-4 z-40 bg-white dark:bg-gray-800 p-3 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
         title={t('cookies.settings')}
       >
         <Settings size={20} className="text-primary" />

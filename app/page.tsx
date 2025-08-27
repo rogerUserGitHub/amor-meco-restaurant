@@ -18,12 +18,12 @@ export default function Home() {
         <Menu />
       </section>
 
-      {/* Gallery Section */}
+      {/* Reservations Section */}
       <section
-        id="gallery"
+        id="reservations"
         className="section-padding bg-gray-50 dark:bg-gray-800"
       >
-        <Gallery />
+        <Reservations />
       </section>
 
       {/* Event Booking Section */}
@@ -34,12 +34,12 @@ export default function Home() {
         <EventBooking />
       </section>
 
-      {/* Reservations Section */}
+      {/* Gallery Section */}
       <section
-        id="reservations"
+        id="gallery"
         className="section-padding bg-gray-50 dark:bg-gray-800"
       >
-        <Reservations />
+        <Gallery />
       </section>
 
       {/* About Section */}

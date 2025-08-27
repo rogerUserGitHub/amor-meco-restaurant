@@ -93,10 +93,10 @@ export default function Navigation() {
               {languageMounted ? t('nav.menu') : 'Menu'}
             </button>
             <button
-              onClick={() => handleNavigation('gallery')}
+              onClick={() => handleNavigation('reservations')}
               className="text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors duration-200 font-medium"
             >
-              {languageMounted ? t('nav.gallery') : 'Galeria'}
+              {languageMounted ? t('nav.reservations') : 'Reservas'}
             </button>
             <button
               onClick={() => handleNavigation('events')}
@@ -105,10 +105,10 @@ export default function Navigation() {
               {languageMounted ? t('nav.events') : 'Eventos'}
             </button>
             <button
-              onClick={() => handleNavigation('reservations')}
+              onClick={() => handleNavigation('gallery')}
               className="text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors duration-200 font-medium"
             >
-              {languageMounted ? t('nav.reservations') : 'Reservas'}
+              {languageMounted ? t('nav.gallery') : 'Galeria'}
             </button>
             <button
               onClick={() => handleNavigation('about')}
@@ -220,10 +220,10 @@ export default function Navigation() {
                 {languageMounted ? t('nav.menu') : 'Menu'}
               </button>
               <button
-                onClick={() => handleNavigation('gallery')}
+                onClick={() => handleNavigation('reservations')}
                 className="block text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors duration-200 font-medium w-full text-left"
               >
-                {languageMounted ? t('nav.gallery') : 'Galeria'}
+                {languageMounted ? t('nav.reservations') : 'Reservas'}
               </button>
               <button
                 onClick={() => handleNavigation('events')}
@@ -232,10 +232,10 @@ export default function Navigation() {
                 {languageMounted ? t('nav.events') : 'Eventos'}
               </button>
               <button
-                onClick={() => handleNavigation('reservations')}
+                onClick={() => handleNavigation('gallery')}
                 className="block text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors duration-200 font-medium w-full text-left"
               >
-                {languageMounted ? t('nav.reservations') : 'Reservas'}
+                {languageMounted ? t('nav.gallery') : 'Galeria'}
               </button>
               <button
                 onClick={() => handleNavigation('about')}
