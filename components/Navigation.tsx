@@ -11,6 +11,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const isHomePage = pathname === '/';
@@ -36,6 +37,21 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.language-picker')) {
+        setIsLanguageMenuOpen(false);
+      }
+    };
+
+    if (isLanguageMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () =>
+        document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isLanguageMenuOpen]);
+
   const handleNavigation = useCallback(
     (section: string) => {
       if (isHomePage) {
@@ -57,6 +73,16 @@ export default function Navigation() {
     },
     [isHomePage, router]
   );
+
+  const getLanguageFlag = (lang: string) => {
+    const flags = {
+      pt: '🇵🇹',
+      nl: '🇳🇱',
+      en: '🇬🇧',
+      es: '🇪🇸',
+    };
+    return flags[lang as keyof typeof flags] || '🇵🇹';
+  };
 
   return (
     <nav
@@ -200,13 +226,89 @@ export default function Navigation() {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors duration-200"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Actions */}
+          <div className="lg:hidden flex items-center space-x-2">
+            {/* Mobile Language Picker */}
+            <div className="relative language-picker">
+              <button
+                onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                className="p-2 text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors duration-200"
+                title={t('nav.language')}
+              >
+                <span className="text-lg">{getLanguageFlag(language)}</span>
+              </button>
+
+              {/* Language Dropdown */}
+              {isLanguageMenuOpen && (
+                <div className="absolute top-full right-0 mt-2 w-40 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-lg shadow-lg z-10">
+                  <button
+                    onClick={() => {
+                      setLanguage('pt');
+                      setIsLanguageMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                      language === 'pt'
+                        ? 'bg-gold/10 text-gold'
+                        : 'text-gray-900 dark:text-white'
+                    }`}
+                  >
+                    <span className="text-lg">🇵🇹</span>
+                    <span className="text-sm font-medium">Português</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage('nl');
+                      setIsLanguageMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                      language === 'nl'
+                        ? 'bg-gold/10 text-gold'
+                        : 'text-gray-900 dark:text-white'
+                    }`}
+                  >
+                    <span className="text-lg">🇳🇱</span>
+                    <span className="text-sm font-medium">Nederlands</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage('en');
+                      setIsLanguageMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                      language === 'en'
+                        ? 'bg-gold/10 text-gold'
+                        : 'text-gray-900 dark:text-white'
+                    }`}
+                  >
+                    <span className="text-lg">🇬🇧</span>
+                    <span className="text-sm font-medium">English</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage('es');
+                      setIsLanguageMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                      language === 'es'
+                        ? 'bg-gold/10 text-gold'
+                        : 'text-gray-900 dark:text-white'
+                    }`}
+                  >
+                    <span className="text-lg">🇪🇸</span>
+                    <span className="text-sm font-medium">Español</span>
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors duration-200"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -252,25 +354,6 @@ export default function Navigation() {
 
               {/* Mobile Actions */}
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700 space-y-4">
-                {/* Language Switcher */}
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {t('nav.language')}:
-                  </span>
-                  <select
-                    value={language}
-                    onChange={(e) =>
-                      setLanguage(e.target.value as 'pt' | 'nl' | 'en' | 'es')
-                    }
-                    className="text-sm border border-gray-300 dark:border-gray-600 rounded px-2 py-1 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
-                  >
-                    <option value="pt">Português</option>
-                    <option value="nl">Nederlands</option>
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                  </select>
-                </div>
-
                 {/* Theme Toggle */}
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600 dark:text-gray-400">
