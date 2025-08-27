@@ -3,7 +3,7 @@
 import { useLanguage } from './LanguageProvider';
 import { motion } from 'framer-motion';
 import { Download, Globe, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Menu() {
   const { t } = useLanguage();
@@ -35,6 +35,21 @@ export default function Menu() {
   };
 
   const selectedLang = languages.find((lang) => lang.code === selectedLanguage);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.pdf-menu-dropdown')) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () =>
+        document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isDropdownOpen]);
 
   return (
     <div className="container-custom">
@@ -150,7 +165,7 @@ export default function Menu() {
           {/* Buttons Container */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {/* Language Dropdown */}
-            <div className="relative">
+            <div className="relative pdf-menu-dropdown">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center space-x-3 px-6 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-lg hover:border-gold dark:hover:border-gold transition-all duration-200 min-w-[200px] shadow-sm"
