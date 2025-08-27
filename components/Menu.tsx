@@ -72,10 +72,10 @@ export default function Menu() {
                 <div className="text-center">
                   <div className="text-6xl mb-4">🍽️</div>
                   <div className="text-gray-600 dark:text-gray-400 font-medium">
-                    Menu Photo Placeholder
+                    {t('menu.photoPlaceholder')}
                   </div>
                   <div className="text-sm text-gray-500 dark:text-gray-500 mt-2">
-                    Portuguese Cuisine
+                    {t('menu.portugueseCuisine')}
                   </div>
                 </div>
               </div>
@@ -84,39 +84,36 @@ export default function Menu() {
             {/* Content */}
             <div className="p-8 lg:p-12 flex flex-col justify-center">
               <h3 className="text-2xl lg:text-3xl font-quiverleaf font-bold text-gradient-gold mb-4">
-                Authentic Portuguese Cuisine
+                {t('menu.authenticCuisine')}
               </h3>
 
               <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
-                Experience the rich flavors and traditional recipes of Portugal
-                at Amor Meco. Our menu features classic dishes that showcase the
-                diverse culinary heritage of Portuguese cuisine, from the
-                Atlantic coast to the Mediterranean influences.
+                {t('menu.description')}
               </p>
 
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-gold rounded-full"></div>
                   <span className="text-gray-700 dark:text-gray-200 font-medium">
-                    Fresh Seafood & Grilled Fish
+                    {t('menu.freshSeafood')}
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-gold rounded-full"></div>
                   <span className="text-gray-700 dark:text-gray-200 font-medium">
-                    Traditional Meat Dishes
+                    {t('menu.traditionalMeat')}
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-gold rounded-full"></div>
                   <span className="text-gray-700 dark:text-gray-200 font-medium">
-                    Homemade Breads & Pastries
+                    {t('menu.homemadeBreads')}
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-gold rounded-full"></div>
                   <span className="text-gray-700 dark:text-gray-200 font-medium">
-                    Portuguese Wines & Beverages
+                    {t('menu.portugueseWines')}
                   </span>
                 </div>
               </div>
@@ -196,7 +193,7 @@ export default function Menu() {
               className="btn-primary text-lg px-8 py-3 flex items-center space-x-2 group shadow-sm"
             >
               <Download size={20} className="group-hover:animate-bounce" />
-              <span>Download PDF</span>
+              <span>{t('menu.downloadPdf')}</span>
             </button>
           </div>
         </div>

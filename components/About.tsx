@@ -109,26 +109,12 @@ export default function About() {
           viewport={{ once: true }}
         >
           <h3 className="text-3xl font-quiverleaf font-bold text-primary mb-6">
-            Our Story
+            {t('about.ourStory')}
           </h3>
           <div className="space-y-4 text-gray-600 dark:text-gray-300">
-            <p>
-              Founded in 2010, Amor Meco began as a dream to bring authentic
-              Portuguese cuisine to the heart of the city. What started as a
-              small family restaurant has grown into a beloved culinary
-              destination, known for its warm hospitality and exceptional food.
-            </p>
-            <p>
-              Our name "Amor Meco" reflects our philosophy - "Amor" meaning
-              love, and "Meco" representing our connection to the sea and
-              traditional Portuguese heritage. Every dish tells a story of our
-              rich culinary traditions.
-            </p>
-            <p>
-              Today, we continue to honor our roots while embracing innovation,
-              creating memorable dining experiences that celebrate the best of
-              Portuguese culture and cuisine.
-            </p>
+            <p>{t('about.story1')}</p>
+            <p>{t('about.story2')}</p>
+            <p>{t('about.story3')}</p>
           </div>
         </motion.div>
       </div>
@@ -143,43 +129,34 @@ export default function About() {
       >
         <div className="text-center max-w-4xl mx-auto">
           <h3 className="text-3xl font-quiverleaf font-bold text-primary mb-6">
-            Our Philosophy
+            {t('about.ourPhilosophy')}
           </h3>
           <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
-            At Amor Meco, we believe that great food is more than just
-            taste—it's an experience that brings people together. Our philosophy
-            centers around three core principles: authenticity, quality, and
-            hospitality.
+            {t('about.philosophyDescription')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Authenticity
+                {t('about.authenticity')}
               </h4>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                We stay true to traditional Portuguese recipes and cooking
-                methods, preserving the authentic flavors that have been passed
-                down through generations.
+                {t('about.authenticityDescription')}
               </p>
             </div>
             <div>
               <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Quality
+                {t('about.quality')}
               </h4>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                We source only the finest ingredients, working with local
-                producers and selecting premium products to ensure exceptional
-                quality in every dish.
+                {t('about.qualityDescription')}
               </p>
             </div>
             <div>
               <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Hospitality
+                {t('about.hospitality')}
               </h4>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                We treat every guest like family, creating a warm and welcoming
-                atmosphere where memories are made and traditions are
-                celebrated.
+                {t('about.hospitalityDescription')}
               </p>
             </div>
           </div>

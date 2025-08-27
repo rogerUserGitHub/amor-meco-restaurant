@@ -38,15 +38,15 @@ export default function Reservations() {
           <div className="space-y-4 mb-8">
             <div className="flex items-center text-gray-600 dark:text-gray-300">
               <Calendar className="mr-3 text-primary" size={20} />
-              <span>Reservations available for lunch and dinner</span>
+              <span>{t('reservations.available')}</span>
             </div>
             <div className="flex items-center text-gray-600 dark:text-gray-300">
               <Clock className="mr-3 text-primary" size={20} />
-              <span>Lunch: 12:00 - 15:00 | Dinner: 18:00 - 23:00</span>
+              <span>{t('reservations.hours')}</span>
             </div>
             <div className="flex items-center text-gray-600 dark:text-gray-300">
               <Users className="mr-3 text-primary" size={20} />
-              <span>Groups up to 50 people</span>
+              <span>{t('reservations.groups')}</span>
             </div>
           </div>
 
@@ -56,14 +56,14 @@ export default function Reservations() {
               className="flex items-center justify-center space-x-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-light transition-colors duration-200"
             >
               <Phone size={18} />
-              <span>Call to Reserve</span>
+              <span>{t('reservations.callToReserve')}</span>
             </a>
             <a
               href="mailto:reservations@amormeco.pt"
               className="flex items-center justify-center space-x-2 border-2 border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors duration-200"
             >
               <Mail size={18} />
-              <span>Email Us</span>
+              <span>{t('reservations.emailUs')}</span>
             </a>
           </div>
         </motion.div>
@@ -77,7 +77,7 @@ export default function Reservations() {
         >
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
             <h3 className="text-2xl font-quiverleaf font-bold text-primary mb-6 text-center">
-              Book Your Table
+              {t('reservations.bookYourTable')}
             </h3>
 
             {/* GuestPlan Widget Placeholder */}
@@ -85,7 +85,7 @@ export default function Reservations() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Date
+                    {t('reservations.date')}
                   </label>
                   <input
                     type="date"
@@ -95,7 +95,7 @@ export default function Reservations() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Time
+                    {t('reservations.time')}
                   </label>
                   <select className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
                     <option>12:00</option>
@@ -120,73 +120,76 @@ export default function Reservations() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Guests
+                    {t('reservations.guests')}
                   </label>
                   <select className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
                       <option key={num}>
-                        {num} {num === 1 ? 'Guest' : 'Guests'}
+                        {num}{' '}
+                        {num === 1
+                          ? t('reservations.guest')
+                          : t('reservations.guests')}
                       </option>
                     ))}
                   </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Special Requests
+                    {t('reservations.specialRequests')}
                   </label>
                   <select className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-                    <option>None</option>
-                    <option>Window Seat</option>
-                    <option>Quiet Area</option>
-                    <option>High Chair</option>
-                    <option>Wheelchair Accessible</option>
-                    <option>Anniversary</option>
-                    <option>Birthday</option>
+                    <option>{t('reservations.none')}</option>
+                    <option>{t('reservations.windowSeat')}</option>
+                    <option>{t('reservations.quietArea')}</option>
+                    <option>{t('reservations.highChair')}</option>
+                    <option>{t('reservations.wheelchairAccessible')}</option>
+                    <option>{t('reservations.anniversary')}</option>
+                    <option>{t('reservations.birthday')}</option>
                   </select>
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Name
+                  {t('reservations.name')}
                 </label>
                 <input
                   type="text"
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder="Your full name"
+                  placeholder={t('reservations.namePlaceholder')}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Email
+                  {t('reservations.email')}
                 </label>
                 <input
                   type="email"
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder="your.email@example.com"
+                  placeholder={t('reservations.emailPlaceholder')}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Phone
+                  {t('reservations.phone')}
                 </label>
                 <input
                   type="tel"
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder="+351 XXXXXXX"
+                  placeholder={t('reservations.phonePlaceholder')}
                 />
               </div>
 
               <button className="w-full btn-primary text-lg py-4">
-                Confirm Reservation
+                {t('reservations.confirmReservation')}
               </button>
             </div>
 
             <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
-              <p>Reservations are held for 15 minutes</p>
-              <p>Cancellations: 24 hours notice required</p>
+              <p>{t('reservations.heldFor')}</p>
+              <p>{t('reservations.cancellations')}</p>
             </div>
           </div>
         </motion.div>

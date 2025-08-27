@@ -218,7 +218,7 @@ export default function Contact() {
         >
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
             <h3 className="text-2xl font-quiverleaf font-bold text-primary mb-6">
-              Send us a Message
+              {t('contact.sendUsMessage')}
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -238,7 +238,7 @@ export default function Contact() {
                       ? 'border-red-500 focus:ring-red-500'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}
-                  placeholder="Your name"
+                  placeholder={t('contact.namePlaceholder')}
                 />
                 {errors.name && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
@@ -263,7 +263,7 @@ export default function Contact() {
                       ? 'border-red-500 focus:ring-red-500'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}
-                  placeholder="your.email@example.com"
+                  placeholder={t('contact.emailPlaceholder')}
                 />
                 {errors.email && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
@@ -276,7 +276,9 @@ export default function Contact() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   {t('contact.phone')}{' '}
-                  <span className="text-gray-500 text-xs">(Optional)</span>
+                  <span className="text-gray-500 text-xs">
+                    ({t('contact.optional')})
+                  </span>
                 </label>
                 <input
                   type="tel"
@@ -289,7 +291,7 @@ export default function Contact() {
                       ? 'border-red-500 focus:ring-red-500'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}
-                  placeholder="+351 123 456 789 (optional)"
+                  placeholder={t('contact.phonePlaceholder')}
                 />
                 {errors.phone && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
@@ -314,7 +316,7 @@ export default function Contact() {
                       ? 'border-red-500 focus:ring-red-500'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}
-                  placeholder="What's this about?"
+                  placeholder={t('contact.subjectPlaceholder')}
                 />
                 {errors.subject && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
@@ -339,7 +341,7 @@ export default function Contact() {
                       ? 'border-red-500 focus:ring-red-500'
                       : 'border-gray-300 dark:border-gray-600'
                   }`}
-                  placeholder="Tell us how we can help you..."
+                  placeholder={t('contact.messagePlaceholder')}
                 />
                 {errors.message && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
@@ -378,7 +380,7 @@ export default function Contact() {
           {/* Contact Details */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 flex-1">
             <h3 className="text-2xl font-quiverleaf font-bold text-primary mb-6">
-              Get in Touch
+              {t('contact.getInTouch')}
             </h3>
 
             <div className="space-y-4">
@@ -386,7 +388,7 @@ export default function Contact() {
                 <MapPin className="text-primary mt-1" size={20} />
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">
-                    Address
+                    {t('contact.address')}
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">
                     R. Praia Moinho de Baixo 1
@@ -400,7 +402,7 @@ export default function Contact() {
                 <Phone className="text-primary mt-1" size={20} />
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">
-                    Phone
+                    {t('contact.phone')}
                   </h4>
                   <a
                     href="tel:+351XXXXXXX"
@@ -415,7 +417,7 @@ export default function Contact() {
                 <Mail className="text-primary mt-1" size={20} />
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">
-                    Email
+                    {t('contact.email')}
                   </h4>
                   <a
                     href="mailto:info@amormeco.pt"
@@ -431,7 +433,7 @@ export default function Contact() {
                 <div className="flex items-center space-x-2 mb-4">
                   <Clock className="text-primary" size={20} />
                   <h4 className="font-semibold text-gray-900 dark:text-white">
-                    Opening Hours
+                    {t('contact.openingHours')}
                   </h4>
                 </div>
                 <div className="space-y-2">
@@ -456,11 +458,11 @@ export default function Contact() {
           {/* Social Media */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
-              Follow Us
+              {t('contact.followUs')}
             </h4>
             <ul className="social-wrapper">
               <li className="icon facebook">
-                <span className="tooltip">Facebook</span>
+                <span className="tooltip">{t('contact.facebook')}</span>
                 <a
                   href="https://facebook.com/amormeco"
                   target="_blank"
@@ -477,7 +479,7 @@ export default function Contact() {
                 </a>
               </li>
               <li className="icon instagram">
-                <span className="tooltip">Instagram</span>
+                <span className="tooltip">{t('contact.instagram')}</span>
                 <a
                   href="https://instagram.com/amormeco"
                   target="_blank"
@@ -509,7 +511,7 @@ export default function Contact() {
       >
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
           <h3 className="text-2xl font-quiverleaf font-bold text-primary mb-6">
-            Find Us
+            {t('contact.findUs')}
           </h3>
           <div className="relative h-96 rounded-lg overflow-hidden">
             <iframe

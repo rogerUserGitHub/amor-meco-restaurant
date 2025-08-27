@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Globe, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
-import { useLanguage } from '../hooks/useLanguage';
+import { useLanguage } from './LanguageProvider';
 
 export default function Footer() {
   const [mounted, setMounted] = useState(false);
@@ -44,10 +44,7 @@ export default function Footer() {
                 Amor Meco
               </h3>
             </div>
-            <p className="text-gray-300 mb-6">
-              Experimente os sabores autênticos de Portugal em cada prato. Onde
-              a tradição encontra a inovação num ambiente acolhedor.
-            </p>
+            <p className="text-gray-300 mb-6">{t('footer.tagline')}</p>
             <div className="flex space-x-4">
               <button
                 onClick={toggleTheme}
@@ -91,7 +88,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gold">
-              Links Rápidos
+              {t('footer.quickLinks')}
             </h4>
             <ul className="space-y-2">
               <li>
@@ -99,7 +96,7 @@ export default function Footer() {
                   href="#menu"
                   className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  Menu
+                  {t('nav.menu')}
                 </a>
               </li>
               <li>
@@ -107,7 +104,7 @@ export default function Footer() {
                   href="#gallery"
                   className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  Galeria
+                  {t('nav.gallery')}
                 </a>
               </li>
               <li>
@@ -115,7 +112,7 @@ export default function Footer() {
                   href="#events"
                   className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  Eventos
+                  {t('nav.events')}
                 </a>
               </li>
               <li>
@@ -123,7 +120,7 @@ export default function Footer() {
                   href="#reservations"
                   className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  Reservas
+                  {t('nav.reservations')}
                 </a>
               </li>
               <li>
@@ -131,7 +128,7 @@ export default function Footer() {
                   href="#about"
                   className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  Sobre Nós
+                  {t('nav.about')}
                 </a>
               </li>
               <li>
@@ -139,7 +136,7 @@ export default function Footer() {
                   href="#contact"
                   className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  Contacto
+                  {t('nav.contact')}
                 </a>
               </li>
             </ul>
@@ -148,7 +145,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gold">
-              Informações de Contacto
+              {t('footer.contactInfo')}
             </h4>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
@@ -183,21 +180,27 @@ export default function Footer() {
           {/* Opening Hours */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gold">
-              Horário de Funcionamento
+              {t('footer.openingHours')}
             </h4>
             <div className="space-y-2">
               <div className="flex justify-between">
-                <span className="text-gray-300 text-sm">Segunda-feira</span>
-                <span className="text-gray-300 text-sm">Fechado</span>
+                <span className="text-gray-300 text-sm">
+                  {t('footer.monday')}
+                </span>
+                <span className="text-gray-300 text-sm">
+                  {t('footer.closed')}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-300 text-sm">
-                  Terça-feira - Sexta-feira
+                  {t('footer.tuesday')} - {t('footer.friday')}
                 </span>
                 <span className="text-gray-300 text-sm">12:00 - 23:00</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-300 text-sm">Sábado - Domingo</span>
+                <span className="text-gray-300 text-sm">
+                  {t('footer.saturday')} - {t('footer.sunday')}
+                </span>
                 <span className="text-gray-300 text-sm">12:00 - 23:00</span>
               </div>
             </div>
@@ -208,15 +211,14 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              © {currentYear} Restaurante Amor Meco. Todos os direitos
-              reservados.
+              {t('footer.copyright').replace('{year}', currentYear.toString())}
             </p>
             <div className="flex space-x-6">
               <a
                 href="/privacy"
                 className="text-gray-400 hover:text-gold transition-colors duration-200 text-sm"
               >
-                Política de Privacidade & Cookies
+                {t('footer.privacy')}
               </a>
             </div>
           </div>

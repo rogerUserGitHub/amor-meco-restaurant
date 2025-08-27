@@ -5,7 +5,7 @@ import { Menu, X, Sun, Moon, Globe, Utensils, Phone } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTheme } from '../hooks/useTheme';
-import { useLanguage } from '../hooks/useLanguage';
+import { useLanguage } from './LanguageProvider';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -196,7 +196,7 @@ export default function Navigation() {
               className="btn-reservations flex items-center space-x-2"
             >
               <Utensils size={16} />
-              <span>Reservas</span>
+              <span>{t('nav.reservations')}</span>
             </button>
           </div>
 
@@ -255,7 +255,7 @@ export default function Navigation() {
                 {/* Language Switcher */}
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    Language:
+                    {t('nav.language')}:
                   </span>
                   <select
                     value={language}
@@ -274,7 +274,7 @@ export default function Navigation() {
                 {/* Theme Toggle */}
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    Theme:
+                    {t('nav.theme')}:
                   </span>
                   <button
                     onClick={toggleTheme}
@@ -294,7 +294,7 @@ export default function Navigation() {
                   className="btn-primary w-full flex items-center justify-center space-x-2"
                 >
                   <Utensils size={16} />
-                  <span>Reservas</span>
+                  <span>{t('nav.reservations')}</span>
                 </button>
               </div>
             </div>

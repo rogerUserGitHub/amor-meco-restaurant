@@ -10,25 +10,23 @@ export default function EventBooking() {
   const eventTypes = [
     {
       icon: <Users size={24} className="text-primary" />,
-      title: 'Private Dining',
-      description:
-        'Intimate gatherings and special occasions in our private dining room',
+      title: t('events.privateDining.title'),
+      description: t('events.privateDining.description'),
     },
     {
       icon: <Music size={24} className="text-primary" />,
-      title: 'Live Music Events',
-      description: 'Fado nights and live Portuguese music performances',
+      title: t('events.liveMusic.title'),
+      description: t('events.liveMusic.description'),
     },
     {
       icon: <Heart size={24} className="text-primary" />,
-      title: 'Wedding Receptions',
-      description:
-        'Celebrate your special day with authentic Portuguese cuisine',
+      title: t('events.weddingReceptions.title'),
+      description: t('events.weddingReceptions.description'),
     },
     {
       icon: <Calendar size={24} className="text-primary" />,
-      title: 'Corporate Events',
-      description: 'Business meetings and corporate functions with catering',
+      title: t('events.corporateEvents.title'),
+      description: t('events.corporateEvents.description'),
     },
   ];
 
@@ -115,7 +113,7 @@ export default function EventBooking() {
             onClick={handleBookNow}
             className="btn-primary text-lg px-8 py-4 flex items-center space-x-2 mx-auto group"
           >
-            <span>Book Now</span>
+            <span>{t('events.bookNow')}</span>
             <ArrowRight
               size={20}
               className="group-hover:translate-x-1 transition-transform duration-200"

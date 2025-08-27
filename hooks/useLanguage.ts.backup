@@ -1,0 +1,222 @@
+import { useState, useEffect, useCallback } from 'react';
+
+type Language = 'pt' | 'nl' | 'en' | 'es';
+
+// Translation data
+const translations = {
+  pt: {
+    'nav.menu': 'Menu',
+    'nav.gallery': 'Galeria',
+    'nav.reservations': 'Reservas',
+    'nav.events': 'Eventos',
+    'nav.contact': 'Contacto',
+    'nav.about': 'Sobre',
+    'language.pt': 'Português',
+    'language.nl': 'Nederlands',
+    'language.en': 'English',
+    'language.es': 'Español',
+    // Contact Form Validation Messages
+    'validation.name.required': 'Nome é obrigatório',
+    'validation.name.min': 'Nome deve ter pelo menos 2 caracteres',
+    'validation.name.max': 'Nome deve ter menos de 50 caracteres',
+    'validation.name.pattern': 'Nome só pode conter letras, espaços, hífens e apóstrofos',
+    'validation.name.invalid': 'Caracteres inválidos detetados',
+    'validation.email.required': 'Email é obrigatório',
+    'validation.email.invalid': 'Por favor, introduza um email válido',
+    'validation.email.max': 'Endereço de email é muito longo',
+    'validation.phone.invalid': 'Por favor, introduza um número de telefone válido',
+    'validation.subject.required': 'Assunto é obrigatório',
+    'validation.subject.min': 'Assunto deve ter pelo menos 5 caracteres',
+    'validation.subject.max': 'Assunto deve ter menos de 100 caracteres',
+    'validation.subject.invalid': 'Assunto contém caracteres inválidos',
+    'validation.message.required': 'Mensagem é obrigatória',
+    'validation.message.min': 'Mensagem deve ter pelo menos 10 caracteres',
+    'validation.message.max': 'Mensagem deve ter menos de 1000 caracteres',
+    'validation.message.invalid': 'Mensagem contém caracteres inválidos',
+    'validation.security.invalid': 'Caracteres inválidos detetados',
+    // Contact Form Labels
+    'contact.name': 'Nome',
+    'contact.email': 'Email',
+    'contact.phone': 'Telefone (Opcional)',
+    'contact.subject': 'Assunto',
+    'contact.message': 'Mensagem',
+    'contact.sendMessage': 'Enviar Mensagem',
+    'contact.sending': 'A Enviar...',
+    'contact.successMessage': 'Mensagem enviada com sucesso!',
+    'contact.errorMessage': 'Por favor, verifique o formulário e tente novamente.',
+    'contact.submissionError': 'Falha ao enviar mensagem. Tente novamente mais tarde.',
+  },
+  nl: {
+    'nav.menu': 'Menu',
+    'nav.gallery': 'Galerij',
+    'nav.reservations': 'Reserveringen',
+    'nav.events': 'Evenementen',
+    'nav.contact': 'Contact',
+    'nav.about': 'Over Ons',
+    'language.pt': 'Português',
+    'language.nl': 'Nederlands',
+    'language.en': 'English',
+    'language.es': 'Español',
+    // Contact Form Validation Messages
+    'validation.name.required': 'Naam is verplicht',
+    'validation.name.min': 'Naam moet minimaal 2 tekens bevatten',
+    'validation.name.max': 'Naam moet minder dan 50 tekens bevatten',
+    'validation.name.pattern': 'Naam mag alleen letters, spaties, streepjes en apostroffen bevatten',
+    'validation.name.invalid': 'Ongeldige tekens gedetecteerd',
+    'validation.email.required': 'E-mail is verplicht',
+    'validation.email.invalid': 'Voer een geldig e-mailadres in',
+    'validation.email.max': 'E-mailadres is te lang',
+    'validation.phone.invalid': 'Voer een geldig telefoonnummer in',
+    'validation.subject.required': 'Onderwerp is verplicht',
+    'validation.subject.min': 'Onderwerp moet minimaal 5 tekens bevatten',
+    'validation.subject.max': 'Onderwerp moet minder dan 100 tekens bevatten',
+    'validation.subject.invalid': 'Onderwerp bevat ongeldige tekens',
+    'validation.message.required': 'Bericht is verplicht',
+    'validation.message.min': 'Bericht moet minimaal 10 tekens bevatten',
+    'validation.message.max': 'Bericht moet minder dan 1000 tekens bevatten',
+    'validation.message.invalid': 'Bericht bevat ongeldige tekens',
+    'validation.security.invalid': 'Ongeldige tekens gedetecteerd',
+    // Contact Form Labels
+    'contact.name': 'Naam',
+    'contact.email': 'E-mail',
+    'contact.phone': 'Telefoon (Optioneel)',
+    'contact.subject': 'Onderwerp',
+    'contact.message': 'Bericht',
+    'contact.sendMessage': 'Bericht Versturen',
+    'contact.sending': 'Versturen...',
+    'contact.successMessage': 'Bericht succesvol verzonden!',
+    'contact.errorMessage': 'Controleer het formulier en probeer het opnieuw.',
+    'contact.submissionError': 'Bericht verzenden mislukt. Probeer het later opnieuw.',
+  },
+  en: {
+    'nav.menu': 'Menu',
+    'nav.gallery': 'Gallery',
+    'nav.reservations': 'Reservations',
+    'nav.events': 'Events',
+    'nav.contact': 'Contact',
+    'nav.about': 'About',
+    'language.pt': 'Português',
+    'language.nl': 'Nederlands',
+    'language.en': 'English',
+    'language.es': 'Español',
+    // Contact Form Validation Messages
+    'validation.name.required': 'Name is required',
+    'validation.name.min': 'Name must be at least 2 characters',
+    'validation.name.max': 'Name must be less than 50 characters',
+    'validation.name.pattern': 'Name can only contain letters, spaces, hyphens, and apostrophes',
+    'validation.name.invalid': 'Invalid characters detected',
+    'validation.email.required': 'Email is required',
+    'validation.email.invalid': 'Please enter a valid email address',
+    'validation.email.max': 'Email address is too long',
+    'validation.phone.invalid': 'Please enter a valid phone number',
+    'validation.subject.required': 'Subject is required',
+    'validation.subject.min': 'Subject must be at least 5 characters',
+    'validation.subject.max': 'Subject must be less than 100 characters',
+    'validation.subject.invalid': 'Subject contains invalid characters',
+    'validation.message.required': 'Message is required',
+    'validation.message.min': 'Message must be at least 10 characters',
+    'validation.message.max': 'Message must be less than 1000 characters',
+    'validation.message.invalid': 'Message contains invalid characters',
+    'validation.security.invalid': 'Invalid characters detected',
+    // Contact Form Labels
+    'contact.name': 'Name',
+    'contact.email': 'Email',
+    'contact.phone': 'Phone (Optional)',
+    'contact.subject': 'Subject',
+    'contact.message': 'Message',
+    'contact.sendMessage': 'Send Message',
+    'contact.sending': 'Sending...',
+    'contact.successMessage': 'Message sent successfully!',
+    'contact.errorMessage': 'Please check the form and try again.',
+    'contact.submissionError': 'Failed to send message. Please try again later.',
+  },
+  es: {
+    'nav.menu': 'Menú',
+    'nav.gallery': 'Galería',
+    'nav.reservations': 'Reservas',
+    'nav.events': 'Eventos',
+    'nav.contact': 'Contacto',
+    'nav.about': 'Sobre Nosotros',
+    'language.pt': 'Português',
+    'language.nl': 'Nederlands',
+    'language.en': 'English',
+    'language.es': 'Español',
+    // Contact Form Validation Messages
+    'validation.name.required': 'El nombre es obligatorio',
+    'validation.name.min': 'El nombre debe tener al menos 2 caracteres',
+    'validation.name.max': 'El nombre debe tener menos de 50 caracteres',
+    'validation.name.pattern': 'El nombre solo puede contener letras, espacios, guiones y apóstrofes',
+    'validation.name.invalid': 'Caracteres inválidos detectados',
+    'validation.email.required': 'El email es obligatorio',
+    'validation.email.invalid': 'Por favor, introduzca un email válido',
+    'validation.email.max': 'La dirección de email es demasiado larga',
+    'validation.phone.invalid': 'Por favor, introduzca un número de teléfono válido',
+    'validation.subject.required': 'El asunto es obligatorio',
+    'validation.subject.min': 'El asunto debe tener al menos 5 caracteres',
+    'validation.subject.max': 'El asunto debe tener menos de 100 caracteres',
+    'validation.subject.invalid': 'El asunto contiene caracteres inválidos',
+    'validation.message.required': 'El mensaje es obligatorio',
+    'validation.message.min': 'El mensaje debe tener al menos 10 caracteres',
+    'validation.message.max': 'El mensaje debe tener menos de 1000 caracteres',
+    'validation.message.invalid': 'El mensaje contiene caracteres inválidos',
+    'validation.security.invalid': 'Caracteres inválidos detectados',
+    // Contact Form Labels
+    'contact.name': 'Nombre',
+    'contact.email': 'Email',
+    'contact.phone': 'Teléfono (Opcional)',
+    'contact.subject': 'Asunto',
+    'contact.message': 'Mensaje',
+    'contact.sendMessage': 'Enviar Mensaje',
+    'contact.sending': 'Enviando...',
+    'contact.successMessage': '¡Mensaje enviado con éxito!',
+    'contact.errorMessage': 'Por favor, verifique el formulario e inténtelo de nuevo.',
+    'contact.submissionError': 'Error al enviar mensaje. Inténtelo de nuevo más tarde.',
+  },
+};
+
+export function useLanguage() {
+  const [language, setLanguageState] = useState<Language>('pt');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    // Get language from localStorage or default to 'pt'
+    const savedLanguage = localStorage.getItem('language') || 'pt';
+    setLanguageState(savedLanguage as Language);
+  }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      // Save to localStorage
+      localStorage.setItem('language', language);
+    }
+  }, [language, mounted]);
+
+  const setLanguage = useCallback((lang: Language) => {
+    setLanguageState(lang);
+  }, []);
+
+  const t = useCallback(
+    (key: string): string => {
+      const currentTranslations = translations[language];
+      if (!currentTranslations) {
+        console.warn(`No translations found for language: ${language}`);
+        return key;
+      }
+
+      const translation = (currentTranslations as Record<string, string>)[key];
+      if (!translation) {
+        console.warn(
+          `Translation key not found: ${key} for language: ${language}`
+        );
+        return key;
+      }
+
+      return translation;
+    },
+    [language]
+  );
+
+  return { language, setLanguage, t, mounted };
+}
+// Contact Form Validation Messages

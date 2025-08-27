@@ -40,88 +40,58 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-quiverleaf font-bold mb-6">
+          <h1 className="text-5xl md:text-7xl font-quiverleaf font-bold mb-6">
             {t('hero.title')}
           </h1>
-
-          <motion.h2
-            className="text-xl md:text-2xl lg:text-3xl font-light mb-4 text-gray-200"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <p className="text-xl md:text-2xl mb-8 text-gold">
             {t('hero.subtitle')}
-          </motion.h2>
-
-          <motion.p
-            className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+          </p>
+          <p className="text-lg md:text-xl mb-12 text-gray-200 max-w-2xl mx-auto">
             {t('hero.description')}
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <a
-              href="#reservations"
-              className="btn-primary text-lg px-8 py-4 flex items-center space-x-2 group"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary flex items-center space-x-2"
+              onClick={() => {
+                const element = document.getElementById('reservations');
+                if (element) {
+                  const navHeight = 80;
+                  const elementPosition = element.offsetTop - navHeight;
+                  window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth',
+                  });
+                }
+              }}
             >
               <span>{t('hero.reserve')}</span>
-              <ArrowRight
-                size={20}
-                className="group-hover:translate-x-1 transition-transform duration-200"
-              />
-            </a>
+              <ArrowRight size={20} />
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-secondary text-white border-white hover:bg-white hover:text-gray-900 flex items-center space-x-2"
               onClick={scrollToMenu}
-              className="btn-secondary text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
             >
-              {t('hero.viewMenu')}
-            </button>
-          </motion.div>
+              <span>{t('hero.viewMenu')}</span>
+              <ChevronDown size={20} />
+            </motion.button>
+          </div>
         </motion.div>
       </div>
 
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1 }}
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="text-white cursor-pointer"
-          onClick={scrollToMenu}
-        >
-          <ChevronDown size={32} />
-        </motion.div>
+        <ChevronDown size={24} className="text-white" />
       </motion.div>
-
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 hidden lg:block">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="w-20 h-20 border border-white/20 rounded-full"
-        ></motion.div>
-      </div>
-
-      <div className="absolute bottom-20 right-10 hidden lg:block">
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="w-16 h-16 border border-white/20 rounded-full"
-        ></motion.div>
-      </div>
     </section>
   );
 }
