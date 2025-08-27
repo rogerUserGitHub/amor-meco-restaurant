@@ -101,42 +101,29 @@ const restaurantSchema = {
   description:
     'Experience the finest Portuguese cuisine at Amor Meco Restaurant. Authentic flavors, warm atmosphere, and unforgettable dining moments.',
   url: 'https://amormeco.pt',
-  telephone: '+351 XXXXXXX',
+  telephone: '+351123456789',
   email: 'info@amormeco.pt',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'R. Praia Moinho de Baixo 1',
+    addressLocality: 'Sesimbra',
     postalCode: '2970-074',
     addressCountry: 'PT',
-    addressLocality: 'Portugal',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 38.12345678901234,
-    longitude: -9.123456789012345,
+    latitude: 38.4447,
+    longitude: -9.1014,
   },
-  openingHours: [
-    'Mo:Closed',
-    'Tu-Sa:12:00-15:00,18:00-23:00',
-    'Su:12:00-15:00,18:00-22:00',
-  ],
+  openingHours: ['Mo:Closed', 'Tu-Fr:12:00-23:00', 'Sa-Su:12:00-23:00'],
   servesCuisine: ['Portuguese', 'Mediterranean'],
   priceRange: '€€',
   acceptsReservations: true,
   hasMenu: 'https://amormeco.pt/menu',
-  image: [
-    'https://amormeco.pt/images/restaurant-exterior.jpg',
-    'https://amormeco.pt/images/restaurant-interior.jpg',
-  ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    reviewCount: '127',
-  },
+  image: 'https://amormeco.pt/images/restaurant.jpg',
   sameAs: [
     'https://www.facebook.com/amormeco',
     'https://www.instagram.com/amormeco',
-    'https://twitter.com/amormeco',
   ],
 };
 
@@ -194,7 +181,7 @@ export default function RootLayout({
 
         <meta
           name="theme-color"
-          content="#607124"
+          content="#64702A"
           media="(prefers-color-scheme: light)"
         />
         <meta
@@ -211,48 +198,65 @@ export default function RootLayout({
             __html: JSON.stringify(restaurantSchema),
           }}
         />
+
+        {/* Theme initialization script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme') || 'light';
+                  document.documentElement.classList.remove('light', 'dark');
+                  document.documentElement.classList.add(theme);
+                } catch (e) {
+                  console.log('Theme initialization failed:', e);
+                }
+              })();
+            `,
+          }}
+        />
       </head>
-      <body className={inter.className}>
-        <ThemeProvider>
-          <LanguageProvider>
-            <ErrorBoundary>
-              <Suspense fallback={<Loading />}>
-                <div className="min-h-screen flex flex-col">
-                  <Navigation />
+      <body className={inter.className} suppressHydrationWarning>
+        <div className="min-h-screen flex flex-col">
+          <ThemeProvider>
+            <LanguageProvider>
+              <ErrorBoundary>
+                <Navigation />
+                <Suspense fallback={<Loading />}>
                   <main className="flex-grow">{children}</main>
-                  <Footer />
-                  <ScrollToTop />
-                  <CookieBanner />
-                  <Analytics />
-                  <CookieSettings />
-                  <Toaster
-                    position="top-right"
-                    toastOptions={{
-                      duration: 4000,
-                      style: {
-                        background: 'var(--color-background)',
-                        color: 'var(--color-text)',
-                        border: '1px solid var(--color-border)',
+                </Suspense>
+                <Footer />
+                <ScrollToTop />
+                <CookieBanner />
+                <Analytics />
+                <CookieSettings />
+                <Toaster
+                  position="top-right"
+                  toastOptions={{
+                    duration: 4000,
+                    style: {
+                      background: 'var(--color-background)',
+                      color: 'var(--color-text)',
+                      border: '1px solid var(--color-border)',
+                    },
+                    success: {
+                      iconTheme: {
+                        primary: '#10B981',
+                        secondary: '#FFFFFF',
                       },
-                      success: {
-                        iconTheme: {
-                          primary: '#10B981',
-                          secondary: '#FFFFFF',
-                        },
+                    },
+                    error: {
+                      iconTheme: {
+                        primary: '#EF4444',
+                        secondary: '#FFFFFF',
                       },
-                      error: {
-                        iconTheme: {
-                          primary: '#EF4444',
-                          secondary: '#FFFFFF',
-                        },
-                      },
-                    }}
-                  />
-                </div>
-              </Suspense>
-            </ErrorBoundary>
-          </LanguageProvider>
-        </ThemeProvider>
+                    },
+                  }}
+                />
+              </ErrorBoundary>
+            </LanguageProvider>
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   );

@@ -1,9 +1,16 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+// Only create the client on the client side
+let supabase: any = null;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+if (typeof window !== 'undefined') {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (supabaseUrl && supabaseAnonKey) {
+    supabase = createClient(supabaseUrl, supabaseAnonKey);
+  }
+}
 
 // Types for contact form data
 export interface ContactFormSubmission {
@@ -27,6 +34,13 @@ export async function submitContactForm(
   >
 ) {
   try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error('Supabase configuration not available');
+    }
+
     const response = await fetch(`${supabaseUrl}/functions/v1/contact-form`, {
       method: 'POST',
       headers: {
@@ -51,6 +65,10 @@ export async function submitContactForm(
 // Function to get contact messages (admin only)
 export async function getContactMessages() {
   try {
+    if (!supabase) {
+      throw new Error('Supabase client not available');
+    }
+
     const { data, error } = await supabase
       .from('contact_messages')
       .select('*')
@@ -67,6 +85,10 @@ export async function getContactMessages() {
 // Function to mark message as read (admin only)
 export async function markMessageAsRead(id: string) {
   try {
+    if (!supabase) {
+      throw new Error('Supabase client not available');
+    }
+
     const { data, error } = await supabase
       .from('contact_messages')
       .update({ read: true })
@@ -80,3 +102,6 @@ export async function markMessageAsRead(id: string) {
     throw error;
   }
 }
+
+// Export the supabase client for use in components
+export { supabase };

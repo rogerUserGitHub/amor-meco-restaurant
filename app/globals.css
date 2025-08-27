@@ -6,6 +6,8 @@
 
 @layer base {
   :root {
+    --primary: #64702A;
+    --secondary: #FCEDD8;
     --gold: hsl(41 85% 65%);
     --gold-dark: hsl(41 75% 55%);
     --color-background: #ffffff;
@@ -24,7 +26,7 @@
   }
   
   body {
-    @apply bg-bg-light text-text-dark dark:bg-bg-dark dark:text-text-light;
+    @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100;
     font-family: 'Inter', system-ui, sans-serif;
   }
   
@@ -274,4 +276,37 @@
   pointer-events: none;
   z-index: 1;
   transform: translate(-50%, -50%);
+  animation: orbit-spark 3s linear infinite;
+}
+
+@keyframes orbit-spark {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  25% {
+    top: 0;
+    left: 100%;
+  }
+  50% {
+    top: 100%;
+    left: 100%;
+  }
+  75% {
+    top: 100%;
+    left: 0;
+  }
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }

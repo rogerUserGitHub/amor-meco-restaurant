@@ -136,13 +136,13 @@ export default function Gallery() {
 
       <style jsx global>{`
         .gallery-swiper .swiper-pagination-bullet {
-          background: #607124;
+          background: #64702a;
           opacity: 0.5;
         }
 
         .gallery-swiper .swiper-pagination-bullet-active {
           opacity: 1;
-          background: #607124;
+          background: #64702a;
         }
 
         .gallery-swiper .swiper-pagination {

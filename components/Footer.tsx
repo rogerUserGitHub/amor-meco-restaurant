@@ -1,39 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useLanguage } from './LanguageProvider';
-import { useTheme } from './ThemeProvider';
 import { MapPin, Phone, Mail, Clock, Globe, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme';
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function Footer() {
   const [mounted, setMounted] = useState(false);
 
-  // Default values for SSR
-  const [language, setLanguage] = useState('pt');
-  const [theme, setTheme] = useState('light');
+  // Use the custom theme hook
+  const { theme, toggleTheme, mounted: themeMounted } = useTheme();
+
+  // Use the custom language hook
+  const { language, setLanguage, t, mounted: languageMounted } = useLanguage();
+
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // Only use providers after mounting
-  const languageContext = mounted ? useLanguage() : null;
-  const themeContext = mounted ? useTheme() : null;
-
-  const currentLanguage = mounted
-    ? languageContext?.language || 'pt'
-    : language;
-  const currentTheme = mounted ? themeContext?.theme || 'light' : theme;
-  const t = mounted
-    ? languageContext?.t || ((key: string) => key)
-    : (key: string) => key;
-  const setLanguageFn = mounted
-    ? languageContext?.setLanguage || setLanguage
-    : setLanguage;
-  const toggleThemeFn = mounted
-    ? themeContext?.toggleTheme ||
-      (() => setTheme((prev) => (prev === 'light' ? 'dark' : 'light')))
-    : () => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
 
   const languages = [
     { code: 'pt', name: 'Português' },
@@ -41,8 +26,6 @@ export default function Footer() {
     { code: 'en', name: 'English' },
     { code: 'es', name: 'Español' },
   ];
-
-  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -61,14 +44,17 @@ export default function Footer() {
                 Amor Meco
               </h3>
             </div>
-            <p className="text-gray-300 mb-6">{t('footer.tagline')}</p>
+            <p className="text-gray-300 mb-6">
+              Experimente os sabores autênticos de Portugal em cada prato. Onde
+              a tradição encontra a inovação num ambiente acolhedor.
+            </p>
             <div className="flex space-x-4">
               <button
-                onClick={toggleThemeFn}
+                onClick={toggleTheme}
                 className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-200"
                 title="Toggle theme"
               >
-                {currentTheme === 'light' ? (
+                {themeMounted && theme === 'light' ? (
                   <Moon size={18} />
                 ) : (
                   <Sun size={18} />
@@ -78,21 +64,23 @@ export default function Footer() {
                 <button className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-200 flex items-center space-x-1">
                   <Globe size={18} />
                   <span className="text-sm">
-                    {languages.find((l) => l.code === currentLanguage)?.name}
+                    {languages.find((l) => l.code === language)?.name}
                   </span>
                 </button>
                 <div className="absolute bottom-full left-0 mb-2 w-40 bg-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => setLanguageFn(lang.code as any)}
+                      onClick={() =>
+                        setLanguage(lang.code as 'pt' | 'nl' | 'en' | 'es')
+                      }
                       className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-700 transition-colors duration-200 ${
-                        currentLanguage === lang.code
+                        language === lang.code
                           ? 'text-gold font-medium'
                           : 'text-gray-300'
                       }`}
                     >
-                      {lang.name}
+                      {languageMounted ? t(`language.${lang.code}`) : lang.name}
                     </button>
                   ))}
                 </div>
@@ -102,8 +90,8 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">
-              {t('footer.quickLinks')}
+            <h4 className="text-lg font-semibold mb-4 text-gold">
+              Links Rápidos
             </h4>
             <ul className="space-y-2">
               <li>
@@ -119,15 +107,7 @@ export default function Footer() {
                   href="#gallery"
                   className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  Gallery
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#reservations"
-                  className="text-gray-300 hover:text-gold transition-colors duration-200"
-                >
-                  Reservations
+                  Galeria
                 </a>
               </li>
               <li>
@@ -135,7 +115,15 @@ export default function Footer() {
                   href="#events"
                   className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  Events
+                  Eventos
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#reservations"
+                  className="text-gray-300 hover:text-gold transition-colors duration-200"
+                >
+                  Reservas
                 </a>
               </li>
               <li>
@@ -143,15 +131,15 @@ export default function Footer() {
                   href="#about"
                   className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  About Us
+                  Sobre Nós
                 </a>
               </li>
               <li>
                 <a
                   href="#contact"
-                  className="text-gray-300 hover:text-white transition-colors duration-200"
+                  className="text-gray-300 hover:text-gold transition-colors duration-200"
                 >
-                  Contact
+                  Contacto
                 </a>
               </li>
             </ul>
@@ -159,34 +147,32 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">
-              {t('footer.contactInfo')}
+            <h4 className="text-lg font-semibold mb-4 text-gold">
+              Informações de Contacto
             </h4>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
-                <MapPin size={18} className="text-primary mt-1" />
+                <MapPin size={18} className="text-gold mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-gray-300 text-sm">
-                    Rua das Flores, 123
-                    <br />
-                    1200-000 Lisbon, Portugal
+                    R. Praia Moinho de Baixo 1, 2970-074 Portugal
                   </p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone size={18} className="text-primary" />
+                <Phone size={18} className="text-gold flex-shrink-0" />
                 <a
-                  href="tel:+351XXXXXXX"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
+                  href="tel:+351123456789"
+                  className="text-gray-300 hover:text-gold transition-colors duration-200 text-sm"
                 >
-                  +351 XXXXXXX
+                  +351 123 456 789
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail size={18} className="text-primary" />
+                <Mail size={18} className="text-gold flex-shrink-0" />
                 <a
                   href="mailto:info@amormeco.pt"
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-gray-300 hover:text-gold transition-colors duration-200 text-sm"
                 >
                   info@amormeco.pt
                 </a>
@@ -196,45 +182,41 @@ export default function Footer() {
 
           {/* Opening Hours */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 flex items-center">
-              <Clock size={18} className="mr-2" />
-              {t('footer.openingHours')}
+            <h4 className="text-lg font-semibold mb-4 text-gold">
+              Horário de Funcionamento
             </h4>
-            <div className="space-y-2 text-sm">
+            <div className="space-y-2">
               <div className="flex justify-between">
-                <span className="text-gray-300">{t('footer.monday')}</span>
-                <span className="text-gray-400">{t('footer.closed')}</span>
+                <span className="text-gray-300 text-sm">Segunda-feira</span>
+                <span className="text-gray-300 text-sm">Fechado</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-300">
-                  {t('footer.tuesday')} - {t('footer.friday')}
+                <span className="text-gray-300 text-sm">
+                  Terça-feira - Sexta-feira
                 </span>
-                <span className="text-gray-400">12:00 - 23:00</span>
+                <span className="text-gray-300 text-sm">12:00 - 23:00</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-300">{t('footer.saturday')}</span>
-                <span className="text-gray-400">12:00 - 23:00</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-300">{t('footer.sunday')}</span>
-                <span className="text-gray-400">12:00 - 22:00</span>
+                <span className="text-gray-300 text-sm">Sábado - Domingo</span>
+                <span className="text-gray-300 text-sm">12:00 - 23:00</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8">
+        {/* Bottom Section */}
+        <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-400 text-sm">
-              {t('footer.copyright').replace('{year}', currentYear.toString())}
-            </div>
-            <div className="flex space-x-6 text-sm">
+            <p className="text-gray-400 text-sm">
+              © {currentYear} Restaurante Amor Meco. Todos os direitos
+              reservados.
+            </p>
+            <div className="flex space-x-6">
               <a
                 href="/privacy"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-gray-400 hover:text-gold transition-colors duration-200 text-sm"
               >
-                {t('footer.privacy')}
+                Política de Privacidade & Cookies
               </a>
             </div>
           </div>

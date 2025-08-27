@@ -14,7 +14,6 @@ import {
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import { createContactFormSchema, ContactFormData } from '../lib/validations';
 import { extractValidationErrors, FormErrors } from '../lib/validationUtils';
-import { submitContactForm } from '../lib/supabase';
 import toast from 'react-hot-toast';
 
 export default function Contact() {
@@ -70,6 +69,9 @@ export default function Contact() {
       if (validatedData.message.length > 1000) {
         throw new Error('Message is too long');
       }
+
+      // Dynamically import Supabase function to avoid SSR issues
+      const { submitContactForm } = await import('../lib/supabase');
 
       // Submit to Supabase Edge Function
       const result = await submitContactForm({

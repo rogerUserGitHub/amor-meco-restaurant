@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#607124',
-        secondary: '#8B4513',
+        primary: '#64702A',
+        secondary: '#FCEDD8',
         accent: '#D4AF37',
         gold: 'hsl(41 85% 65%)',
         'gold-dark': 'hsl(41 75% 55%)',
