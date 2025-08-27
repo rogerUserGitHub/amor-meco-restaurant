@@ -25,6 +25,8 @@ export default function Footer() {
     { code: 'nl', name: 'Nederlands' },
     { code: 'en', name: 'English' },
     { code: 'es', name: 'Español' },
+    { code: 'fr', name: 'Français' },
+    { code: 'de', name: 'Deutsch' },
   ];
 
   return (
@@ -69,7 +71,9 @@ export default function Footer() {
                     <button
                       key={lang.code}
                       onClick={() =>
-                        setLanguage(lang.code as 'pt' | 'nl' | 'en' | 'es')
+                        setLanguage(
+                          lang.code as 'pt' | 'nl' | 'en' | 'es' | 'fr' | 'de'
+                        )
                       }
                       className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-700 transition-colors duration-200 ${
                         language === lang.code
@@ -209,17 +213,28 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 px-20">
             <p className="text-gray-400 text-sm">
               {t('footer.copyright').replace('{year}', currentYear.toString())}
             </p>
-            <div className="flex space-x-6">
+            <div className="flex flex-col items-end space-y-2">
               <a
                 href="/privacy"
                 className="text-gray-400 hover:text-gold transition-colors duration-200 text-sm"
               >
                 {t('footer.privacy')}
               </a>
+              <span className="text-gray-500 text-xs">
+                designed by{' '}
+                <a
+                  href="https://github.com/rogerUserGitHub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-gold transition-colors duration-200"
+                >
+                  @rogerdirkx
+                </a>
+              </span>
             </div>
           </div>
         </div>

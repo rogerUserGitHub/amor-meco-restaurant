@@ -11,7 +11,7 @@ import {
 import { useRouter } from 'next/navigation';
 import { useCookiePreferences } from '../hooks/useCookiePreferences';
 
-type Language = 'pt' | 'nl' | 'en' | 'es';
+type Language = 'pt' | 'nl' | 'en' | 'es' | 'fr' | 'de';
 
 type LanguageContextType = {
   language: Language;
@@ -1265,6 +1265,459 @@ const translations = {
     'cookies.preferences.description':
       'Recuerdan sus elecciones como idioma y tema',
   },
+  fr: {
+    'nav.home': 'Accueil',
+    'nav.menu': 'Menu',
+    'nav.gallery': 'Galerie',
+    'nav.reservations': 'Réservations',
+    'nav.events': 'Événements',
+    'nav.contact': 'Contact',
+    'nav.about': 'À Propos',
+    'nav.language': 'Langue',
+    'nav.theme': 'Thème',
+    'hero.title': 'Amor Meco',
+    'hero.subtitle': 'Expérience Gastronomique Unique',
+    'hero.description':
+      'Découvrez les saveurs authentiques de la cuisine portugaise',
+    'hero.reserve': 'Faire une Réservation',
+    'hero.viewMenu': 'Voir le Menu',
+    'menu.title': 'Notre Menu',
+    'menu.subtitle': 'Saveurs Traditionnelles avec une Touche Moderne',
+    'menu.description':
+      "Découvrez les saveurs uniques de la gastronomie portugaise, où chaque plat raconte une histoire de tradition et d'innovation. Des fruits de mer frais aux viandes grillées, et des desserts conventuels, nous offrons une expérience culinaire qui célèbre le riche patrimoine gastronomique du Portugal.",
+    'menu.download': 'Télécharger le Menu PDF',
+    'menu.downloadText': 'Cliquez pour télécharger notre menu complet en PDF',
+    'menu.photoPlaceholder': 'Photo du Menu',
+    'menu.portugueseCuisine': 'Cuisine Portugaise',
+    'menu.authenticCuisine': 'Cuisine Portugaise Authentique',
+    'menu.freshSeafood': 'Fruits de Mer Frais et Poisson Grillé',
+    'menu.traditionalMeat': 'Plats de Viande Traditionnels',
+    'menu.homemadeBreads': 'Pains et Pâtisseries Maison',
+    'menu.portugueseWines': 'Vins et Boissons Portugais',
+    'menu.downloadPdf': 'Télécharger PDF',
+    'gallery.title': 'Galerie',
+    'gallery.subtitle': 'Moments Spéciaux chez Amor Meco',
+    'gallery.description':
+      "Explorez notre galerie de photos et découvrez l'atmosphère unique d'Amor Meco.",
+    'gallery.image1.alt': 'Intérieur du restaurant',
+    'gallery.image1.title': 'Ambiance Accueillante',
+    'gallery.image2.alt': 'Cuisine portugaise',
+    'gallery.image2.title': 'Cuisine Portugaise',
+    'gallery.image3.alt': 'Expérience gastronomique',
+    'gallery.image3.title': 'Expérience Gastronomique',
+    'gallery.image4.alt': 'Sélection de vins',
+    'gallery.image4.title': 'Sélection de Vins',
+    'gallery.image5.alt': 'Chef préparant la nourriture',
+    'gallery.image5.title': 'Chef en Action',
+    'gallery.discoverMagic': 'Découvrez la magie de la gastronomie portugaise',
+    'events.title': 'Événements Spéciaux',
+    'events.subtitle': 'Célébrez Avec Nous',
+    'events.description':
+      'Rendez votre événement spécial encore plus mémorable avec nos services de restauration personnalisés.',
+    'events.weddings.title': 'Mariages',
+    'events.weddings.description':
+      'Célébrez votre jour spécial avec un menu personnalisé et un service dédié.',
+    'events.birthdays.title': 'Anniversaires',
+    'events.birthdays.description':
+      'Faites de votre anniversaire une occasion mémorable avec nos menus spéciaux.',
+    'events.corporate.title': "Événements d'Entreprise",
+    'events.corporate.description':
+      "Réunions et événements d'entreprise avec des menus professionnels et des espaces appropriés.",
+    'events.bookNow': 'Réserver Maintenant',
+    'events.contactUs':
+      'Contactez-nous pour discuter de vos besoins et créer une expérience unique.',
+    'events.privateDining.title': 'Dîner Privé',
+    'events.privateDining.description':
+      'Rassemblements intimes et occasions spéciales dans notre salle à manger privée',
+    'events.liveMusic.title': 'Événements de Musique Live',
+    'events.liveMusic.description':
+      'Soirées fado et spectacles de musique portugaise live',
+    'events.weddingReceptions.title': 'Réceptions de Mariage',
+    'events.weddingReceptions.description':
+      'Célébrez votre jour spécial avec une cuisine portugaise authentique',
+    'events.corporateEvents.title': "Événements d'Entreprise",
+    'events.corporateEvents.description':
+      "Réunions d'affaires et événements d'entreprise avec restauration",
+    'reservations.title': 'Réservations',
+    'reservations.subtitle': 'Réservez Votre Table',
+    'reservations.description':
+      'Assurez-vous une table chez Amor Meco et préparez-vous pour une expérience gastronomique inoubliable.',
+    'reservations.bookNow': 'Réserver Maintenant',
+    'reservations.contactUs': 'Contactez-nous',
+    'reservations.available':
+      'Réservations disponibles pour le déjeuner et le dîner',
+    'reservations.hours': 'Déjeuner: 12:00 - 15:00 | Dîner: 18:00 - 23:00',
+    'reservations.groups': "Groupes jusqu'à 50 personnes",
+    'reservations.callToReserve': 'Appeler pour Réserver',
+    'reservations.emailUs': 'Nous Envoyer un Email',
+    'reservations.bookYourTable': 'Réservez Votre Table',
+    'reservations.date': 'Date',
+    'reservations.time': 'Heure',
+    'reservations.guests': 'Invités',
+    'reservations.guest': 'Invité',
+    'reservations.specialRequests': 'Demandes Spéciales',
+    'reservations.none': 'Aucune',
+    'reservations.windowSeat': 'Place à la Fenêtre',
+    'reservations.quietArea': 'Zone Calme',
+    'reservations.highChair': 'Chaise Haute',
+    'reservations.wheelchairAccessible': 'Accessible en Fauteuil Roulant',
+    'reservations.anniversary': 'Anniversaire de Mariage',
+    'reservations.birthday': 'Anniversaire',
+    'reservations.name': 'Nom',
+    'reservations.namePlaceholder': 'Votre nom complet',
+    'reservations.email': 'Email',
+    'reservations.emailPlaceholder': 'votre.email@exemple.com',
+    'reservations.phone': 'Téléphone',
+    'reservations.phonePlaceholder': '+351 XXXXXXX',
+    'reservations.confirmReservation': 'Confirmer la Réservation',
+    'reservations.heldFor':
+      'Les réservations sont maintenues pendant 15 minutes',
+    'reservations.cancellations': 'Annulations: 24 heures de préavis requises',
+    'about.title': 'À Propos de Nous',
+    'about.subtitle': 'Notre Histoire',
+    'about.story1':
+      "Fondé en 2010, Amor Meco est né de la passion pour la gastronomie portugaise et du désir de partager les saveurs authentiques du Portugal avec le monde. Notre restaurant est plus qu'un endroit pour manger - c'est un espace où la tradition rencontre l'innovation.",
+    'about.story2':
+      'Chaque plat raconte une histoire, des fruits de mer frais de la côte portugaise aux vins régionaux soigneusement sélectionnés. Notre équipe de chefs combine des techniques traditionnelles avec des présentations modernes, créant une expérience culinaire unique.',
+    'about.values.title': 'Nos Valeurs',
+    'about.values.passion.title': 'Passion pour la Nourriture',
+    'about.values.passion.description':
+      'Chaque plat est créé avec amour et respect pour la cuisine traditionnelle portugaise.',
+    'about.values.excellence.title': 'Excellence',
+    'about.values.excellence.description':
+      "Nous visons l'excellence dans tous les aspects de notre service et de nos offres culinaires.",
+    'about.values.community.title': 'Communauté',
+    'about.values.community.description':
+      'Construire des relations durables avec nos clients et la communauté locale.',
+    'about.values.innovation.title': 'Innovation',
+    'about.values.innovation.description':
+      "Combiner des techniques traditionnelles avec l'innovation culinaire moderne.",
+    'about.ourStory': 'Notre Histoire',
+    'about.story3':
+      "Aujourd'hui, nous continuons à honorer nos racines tout en embrassant l'innovation, créant des expériences gastronomiques mémorables qui célèbrent le meilleur de la culture et de la cuisine portugaises.",
+    'about.ourPhilosophy': 'Notre Philosophie',
+    'about.philosophyDescription':
+      "Chez Amor Meco, nous croyons que la bonne nourriture est plus qu'un simple goût—c'est une expérience qui rassemble les gens. Notre philosophie se concentre sur trois principes fondamentaux: authenticité, qualité et hospitalité.",
+    'about.authenticity': 'Authenticité',
+    'about.authenticityDescription':
+      'Nous restons fidèles aux recettes et méthodes de cuisine portugaises traditionnelles, préservant les saveurs authentiques qui ont été transmises de génération en génération.',
+    'about.quality': 'Qualité',
+    'about.qualityDescription':
+      'Nous nous approvisionnons uniquement avec les meilleurs ingrédients, travaillant avec des producteurs locaux et sélectionnant des produits premium pour assurer une qualité exceptionnelle dans chaque plat.',
+    'about.hospitality': 'Hospitalité',
+    'about.hospitalityDescription':
+      'Nous traitons chaque invité comme de la famille, créant une atmosphère chaleureuse et accueillante où les souvenirs sont créés et les traditions sont célébrées.',
+    'about.team.title': 'Notre Équipe',
+    'about.team.subtitle': 'Chefs Dévoués',
+    'contact.title': 'Contact',
+    'contact.subtitle': 'Entrez en Contact',
+    'contact.name': 'Nom',
+    'contact.email': 'Email',
+    'contact.phone': 'Téléphone (Optionnel)',
+    'contact.subject': 'Sujet',
+    'contact.message': 'Message',
+    'contact.sendMessage': 'Envoyer le Message',
+    'contact.sending': 'Envoi...',
+    'contact.successMessage': 'Message envoyé avec succès!',
+    'contact.errorMessage': 'Veuillez vérifier le formulaire et réessayer.',
+    'contact.submissionError':
+      "Échec de l'envoi du message. Veuillez réessayer plus tard.",
+    'contact.sendUsMessage': 'Envoyez-nous un Message',
+    'contact.namePlaceholder': 'Votre nom',
+    'contact.emailPlaceholder': 'votre.email@exemple.com',
+    'contact.optional': 'Optionnel',
+    'contact.phonePlaceholder': '+351 123 456 789 (optionnel)',
+    'contact.subjectPlaceholder': "De quoi s'agit-il?",
+    'contact.messagePlaceholder':
+      'Dites-nous comment nous pouvons vous aider...',
+    'contact.getInTouch': 'Entrez en Contact',
+    'contact.address': 'Adresse',
+    'contact.openingHours': "Heures d'Ouverture",
+    'contact.followUs': 'Suivez-nous',
+    'contact.facebook': 'Facebook',
+    'contact.instagram': 'Instagram',
+    'contact.findUs': 'Trouvez-nous',
+    'language.pt': 'Português',
+    'language.nl': 'Nederlands',
+    'language.en': 'English',
+    'language.es': 'Español',
+    'language.fr': 'Français',
+    'language.de': 'Deutsch',
+    'cookies.title': 'Cookies et Confidentialité',
+    'cookies.description':
+      'Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez choisir quels cookies accepter.',
+    'cookies.accept': 'Tout Accepter',
+    'cookies.reject': 'Tout Rejeter',
+    'cookies.settings': 'Paramètres',
+    'cookies.settingsTitle': 'Paramètres des Cookies',
+    'cookies.save': 'Enregistrer',
+    'cookies.cancel': 'Annuler',
+    'cookies.always': 'Toujours',
+    'cookies.essential.title': 'Cookies Essentiels',
+    'cookies.essential.description':
+      'Nécessaires pour le fonctionnement de base du site web',
+    'cookies.analytics.title': "Cookies d'Analyse",
+    'cookies.analytics.description':
+      'Nous aident à améliorer le site web grâce à des statistiques anonymes',
+    'cookies.preferences.title': 'Cookies de Préférences',
+    'cookies.preferences.description':
+      'Se souviennent de vos choix comme la langue et le thème',
+    'reviews.title': 'Avis Clients',
+    'reviews.subtitle': 'Ce que disent nos clients',
+    'reviews.joinSatisfiedCustomers':
+      'Rejoignez nos clients satisfaits et découvrez la magie de la gastronomie portugaise.',
+    'reviews.makeReservation': 'Faire une Réservation',
+    'footer.tagline':
+      'Découvrez les saveurs authentiques de la cuisine portugaise dans une ambiance chaleureuse et accueillante.',
+    'footer.quickLinks': 'Liens Rapides',
+    'footer.contactInfo': 'Informations de Contact',
+    'footer.openingHours': "Heures d'Ouverture",
+    'footer.monday': 'Lundi',
+    'footer.tuesday': 'Mardi',
+    'footer.wednesday': 'Mercredi',
+    'footer.thursday': 'Jeudi',
+    'footer.friday': 'Vendredi',
+    'footer.saturday': 'Samedi',
+    'footer.sunday': 'Dimanche',
+    'footer.closed': 'Fermé',
+    'footer.copyright': '© {year} Restaurant Amor Meco. Tous droits réservés.',
+    'footer.privacy': 'Politique de Confidentialité & Cookies',
+    'footer.terms': 'Conditions de Service',
+    'footer.cookies': 'Politique de Cookies',
+    'footer.address': 'Adresse',
+    'footer.phone': 'Téléphone',
+    'footer.email': 'Email',
+    'footer.opening': "Heures d'Ouverture",
+  },
+  de: {
+    'nav.home': 'Startseite',
+    'nav.menu': 'Menü',
+    'nav.gallery': 'Galerie',
+    'nav.reservations': 'Reservierungen',
+    'nav.events': 'Veranstaltungen',
+    'nav.contact': 'Kontakt',
+    'nav.about': 'Über Uns',
+    'nav.language': 'Sprache',
+    'nav.theme': 'Thema',
+    'hero.title': 'Amor Meco',
+    'hero.subtitle': 'Einzigartige Gastronomische Erfahrung',
+    'hero.description':
+      'Entdecken Sie die authentischen Aromen der portugiesischen Küche',
+    'hero.reserve': 'Reservierung Machen',
+    'hero.viewMenu': 'Menü Anzeigen',
+    'menu.title': 'Unser Menü',
+    'menu.subtitle': 'Traditionelle Aromen mit Modernem Twist',
+    'menu.description':
+      'Entdecken Sie die einzigartigen Aromen der portugiesischen Gastronomie, wo jedes Gericht eine Geschichte von Tradition und Innovation erzählt. Von frischen Meeresfrüchten bis zu gegrilltem Fleisch und Klosterdesserts bieten wir eine kulinarische Erfahrung, die das reiche gastronomische Erbe Portugals feiert.',
+    'menu.download': 'Menü PDF Herunterladen',
+    'menu.downloadText':
+      'Klicken Sie, um unser vollständiges Menü in PDF herunterzuladen',
+    'menu.photoPlaceholder': 'Menü Foto',
+    'menu.portugueseCuisine': 'Portugiesische Küche',
+    'menu.authenticCuisine': 'Authentische Portugiesische Küche',
+    'menu.freshSeafood': 'Frische Meeresfrüchte & Gegrillter Fisch',
+    'menu.traditionalMeat': 'Traditionelle Fleischgerichte',
+    'menu.homemadeBreads': 'Hausgemachte Brote & Gebäck',
+    'menu.portugueseWines': 'Portugiesische Weine & Getränke',
+    'menu.downloadPdf': 'PDF Herunterladen',
+    'gallery.title': 'Galerie',
+    'gallery.subtitle': 'Besondere Momente bei Amor Meco',
+    'gallery.description':
+      'Entdecken Sie unsere Fotogalerie und die einzigartige Atmosphäre von Amor Meco.',
+    'gallery.image1.alt': 'Restaurant Innenraum',
+    'gallery.image1.title': 'Einladende Atmosphäre',
+    'gallery.image2.alt': 'Portugiesische Küche',
+    'gallery.image2.title': 'Portugiesische Küche',
+    'gallery.image3.alt': 'Gastronomische Erfahrung',
+    'gallery.image3.title': 'Gastronomische Erfahrung',
+    'gallery.image4.alt': 'Weinauswahl',
+    'gallery.image4.title': 'Weinauswahl',
+    'gallery.image5.alt': 'Koch bereitet Essen zu',
+    'gallery.image5.title': 'Koch in Aktion',
+    'gallery.discoverMagic':
+      'Entdecken Sie die Magie der portugiesischen Gastronomie',
+    'events.title': 'Besondere Veranstaltungen',
+    'events.subtitle': 'Feiern Sie Mit Uns',
+    'events.description':
+      'Machen Sie Ihr besonderes Ereignis noch unvergesslicher mit unseren personalisierten Catering-Services.',
+    'events.weddings.title': 'Hochzeiten',
+    'events.weddings.description':
+      'Feiern Sie Ihren besonderen Tag mit einem personalisierten Menü und engagiertem Service.',
+    'events.birthdays.title': 'Geburtstage',
+    'events.birthdays.description':
+      'Machen Sie Ihren Geburtstag zu einem unvergesslichen Anlass mit unseren Spezialmenüs.',
+    'events.corporate.title': 'Firmenveranstaltungen',
+    'events.corporate.description':
+      'Meetings und Firmenveranstaltungen mit professionellen Menüs und geeigneten Räumen.',
+    'events.bookNow': 'Jetzt Buchen',
+    'events.contactUs':
+      'Kontaktieren Sie uns, um Ihre Bedürfnisse zu besprechen und eine einzigartige Erfahrung zu schaffen.',
+    'events.privateDining.title': 'Privates Diner',
+    'events.privateDining.description':
+      'Intime Zusammenkünfte und besondere Anlässe in unserem privaten Speisesaal',
+    'events.liveMusic.title': 'Live-Musik Veranstaltungen',
+    'events.liveMusic.description':
+      'Fado-Abende und Live-Portugiesische Musikaufführungen',
+    'events.weddingReceptions.title': 'Hochzeitsempfänge',
+    'events.weddingReceptions.description':
+      'Feiern Sie Ihren besonderen Tag mit authentischer portugiesischer Küche',
+    'events.corporateEvents.title': 'Firmenveranstaltungen',
+    'events.corporateEvents.description':
+      'Geschäftstreffen und Firmenveranstaltungen mit Catering',
+    'reservations.title': 'Reservierungen',
+    'reservations.subtitle': 'Ihren Tisch Buchen',
+    'reservations.description':
+      'Sichern Sie sich einen Tisch bei Amor Meco und bereiten Sie sich auf eine unvergessliche gastronomische Erfahrung vor.',
+    'reservations.bookNow': 'Jetzt Buchen',
+    'reservations.contactUs': 'Kontaktieren Sie Uns',
+    'reservations.available':
+      'Reservierungen für Mittag- und Abendessen verfügbar',
+    'reservations.hours':
+      'Mittagessen: 12:00 - 15:00 | Abendessen: 18:00 - 23:00',
+    'reservations.groups': 'Gruppen bis zu 50 Personen',
+    'reservations.callToReserve': 'Anrufen zum Buchen',
+    'reservations.emailUs': 'Uns Email Senden',
+    'reservations.bookYourTable': 'Ihren Tisch Buchen',
+    'reservations.date': 'Datum',
+    'reservations.time': 'Zeit',
+    'reservations.guests': 'Gäste',
+    'reservations.guest': 'Gast',
+    'reservations.specialRequests': 'Besondere Wünsche',
+    'reservations.none': 'Keine',
+    'reservations.windowSeat': 'Fensterplatz',
+    'reservations.quietArea': 'Ruhiger Bereich',
+    'reservations.highChair': 'Hochstuhl',
+    'reservations.wheelchairAccessible': 'Rollstuhlgerecht',
+    'reservations.anniversary': 'Hochzeitstag',
+    'reservations.birthday': 'Geburtstag',
+    'reservations.name': 'Name',
+    'reservations.namePlaceholder': 'Ihr vollständiger Name',
+    'reservations.email': 'Email',
+    'reservations.emailPlaceholder': 'ihre.email@beispiel.com',
+    'reservations.phone': 'Telefon',
+    'reservations.phonePlaceholder': '+351 XXXXXXX',
+    'reservations.confirmReservation': 'Reservierung Bestätigen',
+    'reservations.heldFor': 'Reservierungen werden 15 Minuten gehalten',
+    'reservations.cancellations':
+      'Stornierungen: 24 Stunden Vorankündigung erforderlich',
+    'about.title': 'Über Uns',
+    'about.subtitle': 'Unsere Geschichte',
+    'about.story1':
+      'Gegründet im Jahr 2010, wurde Amor Meco aus der Leidenschaft für portugiesische Gastronomie und dem Wunsch geboren, die authentischen Aromen Portugals mit der Welt zu teilen. Unser Restaurant ist mehr als ein Ort zum Essen - es ist ein Raum, wo Tradition auf Innovation trifft.',
+    'about.story2':
+      'Jedes Gericht erzählt eine Geschichte, von frischen Meeresfrüchten der portugiesischen Küste bis zu sorgfältig ausgewählten regionalen Weinen. Unser Team von Köchen kombiniert traditionelle Techniken mit modernen Präsentationen und schafft eine einzigartige kulinarische Erfahrung.',
+    'about.values.title': 'Unsere Werte',
+    'about.values.passion.title': 'Leidenschaft für Essen',
+    'about.values.passion.description':
+      'Jedes Gericht wird mit Liebe und Respekt für die traditionelle portugiesische Küche zubereitet.',
+    'about.values.excellence.title': 'Exzellenz',
+    'about.values.excellence.description':
+      'Wir streben nach Exzellenz in allen Aspekten unseres Service und unserer kulinarischen Angebote.',
+    'about.values.community.title': 'Gemeinschaft',
+    'about.values.community.description':
+      'Aufbau dauerhafter Beziehungen zu unseren Gästen und der lokalen Gemeinschaft.',
+    'about.values.innovation.title': 'Innovation',
+    'about.values.innovation.description':
+      'Kombination traditioneller Techniken mit moderner kulinarischer Innovation.',
+    'about.ourStory': 'Unsere Geschichte',
+    'about.story3':
+      'Heute ehren wir weiterhin unsere Wurzeln, während wir Innovation umarmen und unvergessliche Dinererfahrungen schaffen, die das Beste der portugiesischen Kultur und Küche feiern.',
+    'about.ourPhilosophy': 'Unsere Philosophie',
+    'about.philosophyDescription':
+      'Bei Amor Meco glauben wir, dass gutes Essen mehr ist als nur Geschmack—es ist eine Erfahrung, die Menschen zusammenbringt. Unsere Philosophie konzentriert sich auf drei Grundprinzipien: Authentizität, Qualität und Gastfreundschaft.',
+    'about.authenticity': 'Authentizität',
+    'about.authenticityDescription':
+      'Wir bleiben den traditionellen portugiesischen Rezepten und Kochmethoden treu und bewahren die authentischen Aromen, die von Generation zu Generation weitergegeben wurden.',
+    'about.quality': 'Qualität',
+    'about.qualityDescription':
+      'Wir beziehen nur die besten Zutaten, arbeiten mit lokalen Produzenten zusammen und wählen Premium-Produkte aus, um außergewöhnliche Qualität in jedem Gericht zu gewährleisten.',
+    'about.hospitality': 'Gastfreundschaft',
+    'about.hospitalityDescription':
+      'Wir behandeln jeden Gast wie Familie und schaffen eine warme, einladende Atmosphäre, in der Erinnerungen geschaffen und Traditionen gefeiert werden.',
+    'about.team.title': 'Unser Team',
+    'about.team.subtitle': 'Engagierte Köche',
+    'contact.title': 'Kontakt',
+    'contact.subtitle': 'Kontakt Aufnehmen',
+    'contact.name': 'Name',
+    'contact.email': 'Email',
+    'contact.phone': 'Telefon (Optional)',
+    'contact.subject': 'Betreff',
+    'contact.message': 'Nachricht',
+    'contact.sendMessage': 'Nachricht Senden',
+    'contact.sending': 'Senden...',
+    'contact.successMessage': 'Nachricht erfolgreich gesendet!',
+    'contact.errorMessage':
+      'Bitte überprüfen Sie das Formular und versuchen Sie es erneut.',
+    'contact.submissionError':
+      'Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.',
+    'contact.sendUsMessage': 'Senden Sie uns eine Nachricht',
+    'contact.namePlaceholder': 'Ihr Name',
+    'contact.emailPlaceholder': 'ihre.email@beispiel.com',
+    'contact.optional': 'Optional',
+    'contact.phonePlaceholder': '+351 123 456 789 (optional)',
+    'contact.subjectPlaceholder': 'Worum geht es?',
+    'contact.messagePlaceholder':
+      'Sagen Sie uns, wie wir Ihnen helfen können...',
+    'contact.getInTouch': 'Kontakt Aufnehmen',
+    'contact.address': 'Adresse',
+    'contact.openingHours': 'Öffnungszeiten',
+    'contact.followUs': 'Folgen Sie Uns',
+    'contact.facebook': 'Facebook',
+    'contact.instagram': 'Instagram',
+    'contact.findUs': 'Finden Sie Uns',
+    'language.pt': 'Português',
+    'language.nl': 'Nederlands',
+    'language.en': 'English',
+    'language.es': 'Español',
+    'language.fr': 'Français',
+    'language.de': 'Deutsch',
+    'cookies.title': 'Cookies & Datenschutz',
+    'cookies.description':
+      'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Sie können wählen, welche Cookies Sie akzeptieren.',
+    'cookies.accept': 'Alle Akzeptieren',
+    'cookies.reject': 'Alle Ablehnen',
+    'cookies.settings': 'Einstellungen',
+    'cookies.settingsTitle': 'Cookie-Einstellungen',
+    'cookies.save': 'Speichern',
+    'cookies.cancel': 'Abbrechen',
+    'cookies.always': 'Immer',
+    'cookies.essential.title': 'Wesentliche Cookies',
+    'cookies.essential.description':
+      'Notwendig für die grundlegende Funktionalität der Website',
+    'cookies.analytics.title': 'Analyse-Cookies',
+    'cookies.analytics.description':
+      'Helfen uns, die Website durch anonyme Statistiken zu verbessern',
+    'cookies.preferences.title': 'Präferenz-Cookies',
+    'cookies.preferences.description':
+      'Merken sich Ihre Auswahl wie Sprache und Thema',
+    'reviews.title': 'Kundenbewertungen',
+    'reviews.subtitle': 'Was unsere Kunden sagen',
+    'reviews.joinSatisfiedCustomers':
+      'Schließen Sie sich unseren zufriedenen Kunden an und entdecken Sie die Magie der portugiesischen Gastronomie.',
+    'reviews.makeReservation': 'Reservierung Machen',
+    'footer.tagline':
+      'Entdecken Sie die authentischen Aromen der portugiesischen Küche in einer warmen und einladenden Atmosphäre.',
+    'footer.quickLinks': 'Schnelle Links',
+    'footer.contactInfo': 'Kontaktinformationen',
+    'footer.openingHours': 'Öffnungszeiten',
+    'footer.monday': 'Montag',
+    'footer.tuesday': 'Dienstag',
+    'footer.wednesday': 'Mittwoch',
+    'footer.thursday': 'Donnerstag',
+    'footer.friday': 'Freitag',
+    'footer.saturday': 'Samstag',
+    'footer.sunday': 'Sonntag',
+    'footer.closed': 'Geschlossen',
+    'footer.copyright':
+      '© {year} Restaurant Amor Meco. Alle Rechte vorbehalten.',
+    'footer.privacy': 'Datenschutz & Cookie-Richtlinie',
+    'footer.terms': 'Nutzungsbedingungen',
+    'footer.cookies': 'Cookie-Richtlinie',
+    'footer.address': 'Adresse',
+    'footer.phone': 'Telefon',
+    'footer.email': 'Email',
+    'footer.opening': 'Öffnungszeiten',
+  },
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
@@ -1278,7 +1731,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     if (isLoaded && preferences) {
       if (preferences.preferences) {
         const savedLanguage = localStorage.getItem('language') as Language;
-        if (savedLanguage && ['pt', 'nl', 'en', 'es'].includes(savedLanguage)) {
+        if (
+          savedLanguage &&
+          ['pt', 'nl', 'en', 'es', 'fr', 'de'].includes(savedLanguage)
+        ) {
           setLanguageState(savedLanguage);
         }
       }

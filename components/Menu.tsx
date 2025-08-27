@@ -15,6 +15,8 @@ export default function Menu() {
     { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
     { code: 'en', name: 'English', flag: '🇬🇧' },
     { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'fr', name: 'Français', flag: '🇫🇷' },
+    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   ];
 
   const handleDownloadMenu = (lang: string) => {
@@ -24,6 +26,8 @@ export default function Menu() {
       nl: '/pdfs/menu-nederlands.pdf',
       en: '/pdfs/menu-english.pdf',
       es: '/pdfs/menu-espanol.pdf',
+      fr: '/pdfs/menu-francais.pdf',
+      de: '/pdfs/menu-deutsch.pdf',
     };
 
     const url = pdfUrls[lang as keyof typeof pdfUrls] || pdfUrls.pt;

@@ -80,6 +80,8 @@ export default function Navigation() {
       nl: '🇳🇱',
       en: '🇬🇧',
       es: '🇪🇸',
+      fr: '🇫🇷',
+      de: '🇩🇪',
     };
     return flags[lang as keyof typeof flags] || '🇵🇹';
   };
@@ -201,6 +203,26 @@ export default function Navigation() {
                 >
                   {languageMounted ? t('language.es') : 'Español'}
                 </button>
+                <button
+                  onClick={() => setLanguage('fr')}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                    language === 'fr'
+                      ? 'text-gold font-medium'
+                      : 'text-gray-700 dark:text-gray-300'
+                  }`}
+                >
+                  {languageMounted ? t('language.fr') : 'Français'}
+                </button>
+                <button
+                  onClick={() => setLanguage('de')}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                    language === 'de'
+                      ? 'text-gold font-medium'
+                      : 'text-gray-700 dark:text-gray-300'
+                  }`}
+                >
+                  {languageMounted ? t('language.de') : 'Deutsch'}
+                </button>
               </div>
             </div>
 
@@ -296,6 +318,34 @@ export default function Navigation() {
                   >
                     <span className="text-lg">🇪🇸</span>
                     <span className="text-sm font-medium">Español</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage('fr');
+                      setIsLanguageMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                      language === 'fr'
+                        ? 'bg-gold/10 text-gold'
+                        : 'text-gray-900 dark:text-white'
+                    }`}
+                  >
+                    <span className="text-lg">🇫🇷</span>
+                    <span className="text-sm font-medium">Français</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage('de');
+                      setIsLanguageMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                      language === 'de'
+                        ? 'bg-gold/10 text-gold'
+                        : 'text-gray-900 dark:text-white'
+                    }`}
+                  >
+                    <span className="text-lg">🇩🇪</span>
+                    <span className="text-sm font-medium">Deutsch</span>
                   </button>
                 </div>
               )}

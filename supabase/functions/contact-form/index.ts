@@ -10,8 +10,8 @@ const corsHeaders = {
 interface ContactFormData {
   name: string;
   email: string;
-  phone?: string;
-  subject?: string;
+  phone?: string | null;
+  subject?: string | null;
   message: string;
   read?: boolean;
   ip_address?: string;
@@ -19,21 +19,17 @@ interface ContactFormData {
 }
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
   }
 
   try {
-    // Create Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Parse request body
     const { name, email, phone, subject, message } = await req.json();
 
-    // Validate required fields
     if (!name || !email || !message) {
       return new Response(
         JSON.stringify({
@@ -47,7 +43,6 @@ serve(async (req) => {
       );
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(JSON.stringify({ error: 'Invalid email format' }), {
@@ -56,20 +51,16 @@ serve(async (req) => {
       });
     }
 
-    // Get client information
     const forwardedFor = req.headers.get('x-forwarded-for');
     const realIp = req.headers.get('x-real-ip');
 
-    // Extract the first IP address from x-forwarded-for (client IP)
     let ipAddress = 'unknown';
     if (forwardedFor) {
-      // x-forwarded-for can contain multiple IPs: "client, proxy1, proxy2"
       ipAddress = forwardedFor.split(',')[0].trim();
     } else if (realIp) {
       ipAddress = realIp;
     }
 
-    // Validate IP address format (basic check)
     const ipRegex =
       /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
     if (!ipRegex.test(ipAddress)) {
@@ -78,7 +69,6 @@ serve(async (req) => {
 
     const userAgent = req.headers.get('user-agent') || 'unknown';
 
-    // Sanitize and prepare data
     const contactData: ContactFormData = {
       name: name.trim().substring(0, 255),
       email: email.trim().toLowerCase().substring(0, 255),
@@ -90,7 +80,6 @@ serve(async (req) => {
       user_agent: userAgent,
     };
 
-    // Insert into database
     const { data, error } = await supabase
       .from('contact_messages')
       .insert([contactData])
@@ -107,7 +96,7 @@ serve(async (req) => {
       );
     }
 
-    // Send notification email (optional)
+    // ✅ Send real email via Resend
     await sendNotificationEmail(contactData);
 
     return new Response(
@@ -132,16 +121,42 @@ serve(async (req) => {
 
 async function sendNotificationEmail(contactData: ContactFormData) {
   try {
-    // You can implement email sending here using a service like SendGrid, Resend, etc.
-    // For now, we'll just log the data
-    console.log('Notification email would be sent for:', {
-      name: contactData.name,
-      email: contactData.email,
-      subject: contactData.subject || 'No subject',
-      timestamp: new Date().toISOString(),
-      ip_address: contactData.ip_address,
+    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')!;
+    if (!RESEND_API_KEY) throw new Error('RESEND_API_KEY not set');
+
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Acme <onboarding@resend.dev>', // from: 'Contact Form <no-reply@amormeco.pt>', // ✅ verified domain
+        to: 'roger.dirkx@gmail.com', // your inbox
+        subject: contactData.subject || 'New Contact Form Submission',
+        reply_to: contactData.email, // so you can reply directly to the user
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${contactData.name}</p>
+          <p><strong>Email:</strong> ${contactData.email}</p>
+          <p><strong>Phone:</strong> ${contactData.phone || 'N/A'}</p>
+          <p><strong>Message:</strong></p>
+          <p>${contactData.message.replace(/\n/g, '<br>')}</p>
+          <hr>
+          <small>IP: ${contactData.ip_address}, User-Agent: ${
+          contactData.user_agent
+        }</small>
+        `,
+      }),
     });
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error('Failed to send email:', text);
+    } else {
+      console.log('Notification email sent successfully');
+    }
   } catch (error) {
-    console.error('Failed to send notification email:', error);
+    console.error('Error sending notification email:', error);
   }
 }

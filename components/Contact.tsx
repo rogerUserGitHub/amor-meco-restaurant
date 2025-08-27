@@ -457,7 +457,7 @@ export default function Contact() {
 
           {/* Social Media */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-2 mt-4">
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
+            <h4 className="font-semibold text-gray-900 dark:text-white mb-4 text-center">
               {t('contact.followUs')}
             </h4>
             <ul className="social-wrapper">
