@@ -316,6 +316,8 @@ const translations = {
     'language.nl': 'Nederlands',
     'language.en': 'English',
     'language.es': 'Español',
+    'language.fr': 'Français',
+    'language.de': 'Deutsch',
     // Cookie Banner
     'cookies.title': 'Cookies e Privacidade',
     'cookies.description':
@@ -627,6 +629,8 @@ const translations = {
     'language.nl': 'Nederlands',
     'language.en': 'English',
     'language.es': 'Español',
+    'language.fr': 'Français',
+    'language.de': 'Deutsch',
     // Cookie Banner
     'cookies.title': 'Cookies en Privacy',
     'cookies.description':
@@ -933,6 +937,8 @@ const translations = {
     'language.nl': 'Nederlands',
     'language.en': 'English',
     'language.es': 'Español',
+    'language.fr': 'Français',
+    'language.de': 'Deutsch',
     // Cookie Banner
     'cookies.title': 'Cookies & Privacy',
     'cookies.description':
@@ -1244,6 +1250,8 @@ const translations = {
     'language.nl': 'Nederlands',
     'language.en': 'English',
     'language.es': 'Español',
+    'language.fr': 'Français',
+    'language.de': 'Deutsch',
     // Cookie Banner
     'cookies.title': 'Cookies y Privacidad',
     'cookies.description':
