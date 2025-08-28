@@ -113,12 +113,12 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            {/* Placeholder Logo */}
-            <div className="w-10 h-10 lg:w-12 lg:h-12 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg lg:text-xl">
-                AM
-              </span>
-            </div>
+            {/* Logo Image */}
+            <img
+              src="/images/logo-large.jpg"
+              alt="Amor Meco Restaurant Logo"
+              className="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover"
+            />
             <a
               href="#"
               className="text-2xl lg:text-3xl font-quiverleaf text-gradient-gold font-bold"

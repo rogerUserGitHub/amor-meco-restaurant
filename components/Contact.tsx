@@ -461,7 +461,7 @@ export default function Contact() {
               <li className="icon facebook">
                 <span className="tooltip">{t('contact.facebook')}</span>
                 <a
-                  href="https://facebook.com/amormeco"
+                  href="http://facebook.com/profile.php?id=61579636772354"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -478,7 +478,7 @@ export default function Contact() {
               <li className="icon instagram">
                 <span className="tooltip">{t('contact.instagram')}</span>
                 <a
-                  href="https://instagram.com/amormeco"
+                  href="https://instagram.com/amor.meco"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

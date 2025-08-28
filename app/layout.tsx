@@ -122,8 +122,8 @@ const restaurantSchema = {
   hasMenu: 'https://amormeco.pt/menu',
   image: 'https://amormeco.pt/images/restaurant.jpg',
   sameAs: [
-    'https://www.facebook.com/amormeco',
-    'https://www.instagram.com/amormeco',
+    'http://facebook.com/profile.php?id=61579636772354',
+    'https://www.instagram.com/amor.meco',
   ],
 };
 
@@ -147,23 +147,23 @@ export default function RootLayout({
   return (
     <html lang="pt" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo-large.jpg" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/apple-touch-icon.png"
+          href="/images/logo-large.jpg"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/jpeg"
           sizes="32x32"
-          href="/favicon-32x32.png"
+          href="/images/logo-large.jpg"
         />
         <link
           rel="icon"
-          type="image/png"
+          type="image/jpeg"
           sizes="16x16"
-          href="/favicon-16x16.png"
+          href="/images/logo-large.jpg"
         />
         <link rel="manifest" href="/site.webmanifest" />
 
