@@ -40,6 +40,20 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8"
+          >
+            <img
+              src="/images/logo-large.jpg"
+              alt="Amor Meco Restaurant Logo"
+              className="w-20 h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full object-cover mx-auto shadow-2xl border-4 border-white/20"
+            />
+          </motion.div>
+
           <h1 className="text-5xl md:text-7xl font-quiverleaf font-bold mb-6">
             {t('hero.title')}
           </h1>

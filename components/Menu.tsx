@@ -154,7 +154,7 @@ export default function Menu() {
         <div className="bg-gradient-to-r from-gold/10 to-gold-dark/10 border border-gold/20 rounded-xl p-2 max-w-4xl mx-auto">
           {/* Download Icon */}
           <div className="flex justify-center mb-2">
-            <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center">
+            <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center">
               <Download size={32} className="text-gold" />
             </div>
           </div>
