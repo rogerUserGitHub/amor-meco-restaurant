@@ -205,11 +205,17 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('theme') || 'light';
+                  // Clear any existing theme from localStorage
+                  localStorage.removeItem('theme');
+                  
+                  // Always default to dark theme
                   document.documentElement.classList.remove('light', 'dark');
-                  document.documentElement.classList.add(theme);
+                  document.documentElement.classList.add('dark');
                 } catch (e) {
                   console.log('Theme initialization failed:', e);
+                  // Fallback to dark theme
+                  document.documentElement.classList.remove('light', 'dark');
+                  document.documentElement.classList.add('dark');
                 }
               })();
             `,

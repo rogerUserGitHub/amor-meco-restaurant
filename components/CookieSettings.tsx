@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from './LanguageProvider';
 import { useCookiePreferences } from '../hooks/useCookiePreferences';
 import { motion } from 'framer-motion';
@@ -12,19 +12,33 @@ export default function CookieSettings() {
   const [showSettings, setShowSettings] = useState(false);
   const [localPreferences, setLocalPreferences] = useState(preferences);
 
-  const handlePreferenceChange = (type: 'analytics' | 'preferences') => {
-    if (!localPreferences) return;
+  // Update localPreferences when preferences change
+  React.useEffect(() => {
+    if (preferences) {
+      setLocalPreferences(preferences);
+    }
+  }, [preferences]);
 
-    setLocalPreferences((prev) => ({
-      ...prev!,
-      [type]: !prev![type],
-    }));
+  const handlePreferenceChange = (type: 'analytics' | 'preferences') => {
+    if (!localPreferences) {
+      return;
+    }
+
+    setLocalPreferences((prev) => {
+      const newPrefs = {
+        ...prev!,
+        [type]: !prev![type],
+      };
+      return newPrefs;
+    });
   };
 
   const handleSave = () => {
     if (localPreferences) {
       updatePreferences(localPreferences);
       setShowSettings(false);
+    } else {
+      console.log('CookieSettings - no localPreferences to save');
     }
   };
 

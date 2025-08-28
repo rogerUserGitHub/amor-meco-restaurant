@@ -276,9 +276,6 @@ export default function Contact() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   {t('contact.phone')}{' '}
-                  <span className="text-gray-500 text-xs">
-                    ({t('contact.optional')})
-                  </span>
                 </label>
                 <input
                   type="tel"

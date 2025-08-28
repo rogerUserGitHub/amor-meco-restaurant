@@ -39,7 +39,7 @@ const translations = {
     // Contact Form Labels
     'contact.name': 'Nome',
     'contact.email': 'Email',
-    'contact.phone': 'Telefone (Opcional)',
+    'contact.phone': 'Telefone',
     'contact.subject': 'Assunto',
     'contact.message': 'Mensagem',
     'contact.sendMessage': 'Enviar Mensagem',

@@ -45,7 +45,7 @@ const translations = {
     'menu.subtitle': 'Sabores Tradicionais com Toque Moderno',
     'menu.description':
       'Descubra os sabores únicos da gastronomia portuguesa, onde cada prato conta uma história de tradição e inovação. Dos frescos frutos do mar às carnes grelhadas, passando pelos doces conventuais, oferecemos uma experiência culinária que celebra a rica herança gastronómica de Portugal.',
-    'menu.download': 'Descarregar Menu PDF',
+    'menu.download': 'Menu PDF',
     'menu.downloadText': 'Clique para descarregar o nosso menu completo em PDF',
     'menu.photoPlaceholder': 'Foto do Menu',
     'menu.portugueseCuisine': 'Cozinha Portuguesa',
@@ -54,7 +54,7 @@ const translations = {
     'menu.traditionalMeat': 'Pratos de Carne Tradicionais',
     'menu.homemadeBreads': 'Pães e Pastelaria Caseiros',
     'menu.portugueseWines': 'Vinhos e Bebidas Portugueses',
-    'menu.downloadPdf': 'Descarregar PDF',
+    'menu.downloadPdf': 'Descarregar',
     'gallery.title': 'Galeria',
     'gallery.subtitle': 'Momentos Especiais no Amor Meco',
     'gallery.description':
@@ -288,7 +288,7 @@ const translations = {
     // Contact Form Labels
     'contact.name': 'Nome',
     'contact.email': 'Email',
-    'contact.phone': 'Telefone (Opcional)',
+    'contact.phone': 'Telefone',
     'contact.subject': 'Assunto',
     'contact.message': 'Mensagem',
     'contact.sendMessage': 'Enviar Mensagem',
@@ -358,7 +358,7 @@ const translations = {
     'menu.subtitle': 'Traditionele Smaken met Moderne Twist',
     'menu.description':
       'Ontdek de unieke smaken van de Portugese gastronomie, waar elk gerecht een verhaal vertelt van traditie en innovatie. Van verse zeevruchten tot gegrilde vleesgerechten, en van kloosterdesserts, bieden we een culinaire ervaring die de rijke gastronomische erfenis van Portugal viert.',
-    'menu.download': 'Menu PDF Downloaden',
+    'menu.download': 'Menu PDF',
     'menu.downloadText': 'Klik om ons volledige menu in PDF te downloaden',
     'menu.photoPlaceholder': 'Menu Foto',
     'menu.portugueseCuisine': 'Portugese Keuken',
@@ -367,7 +367,7 @@ const translations = {
     'menu.traditionalMeat': 'Traditionele Vleesgerechten',
     'menu.homemadeBreads': 'Zelfgemaakte Broden & Gebak',
     'menu.portugueseWines': 'Portugese Wijnen & Dranken',
-    'menu.downloadPdf': 'PDF Downloaden',
+    'menu.downloadPdf': 'Downloaden',
     'gallery.title': 'Galerij',
     'gallery.subtitle': 'Speciale Momenten bij Amor Meco',
     'gallery.description':
@@ -602,7 +602,7 @@ const translations = {
     // Contact Form Labels
     'contact.name': 'Naam',
     'contact.email': 'E-mail',
-    'contact.phone': 'Telefoon (Optioneel)',
+    'contact.phone': 'Telefoon',
     'contact.subject': 'Onderwerp',
     'contact.message': 'Bericht',
     'contact.sendMessage': 'Bericht Versturen',
@@ -671,7 +671,7 @@ const translations = {
     'menu.subtitle': 'Traditional Flavors with Modern Twist',
     'menu.description':
       'Discover the unique flavors of Portuguese gastronomy, where each dish tells a story of tradition and innovation. From fresh seafood to grilled meats, and convent desserts, we offer a culinary experience that celebrates the rich gastronomic heritage of Portugal.',
-    'menu.download': 'Download Menu PDF',
+    'menu.download': 'Menu PDF',
     'menu.downloadText': 'Click to download our complete menu in PDF',
     'menu.photoPlaceholder': 'Menu Photo',
     'menu.portugueseCuisine': 'Portuguese Cuisine',
@@ -680,7 +680,7 @@ const translations = {
     'menu.traditionalMeat': 'Traditional Meat Dishes',
     'menu.homemadeBreads': 'Homemade Breads & Pastries',
     'menu.portugueseWines': 'Portuguese Wines & Beverages',
-    'menu.downloadPdf': 'Download PDF',
+    'menu.downloadPdf': 'Download',
     'gallery.title': 'Gallery',
     'gallery.subtitle': 'Special Moments at Amor Meco',
     'gallery.description':
@@ -910,7 +910,7 @@ const translations = {
     // Contact Form Labels
     'contact.name': 'Name',
     'contact.email': 'Email',
-    'contact.phone': 'Phone (Optional)',
+    'contact.phone': 'Phone',
     'contact.subject': 'Subject',
     'contact.message': 'Message',
     'contact.sendMessage': 'Send Message',
@@ -980,7 +980,7 @@ const translations = {
     'menu.subtitle': 'Sabores Tradicionales con Toque Moderno',
     'menu.description':
       'Descubre los sabores únicos de la gastronomía portuguesa, donde cada plato cuenta una historia de tradición e innovación. Desde mariscos frescos hasta carnes a la parrilla, y postres conventuales, ofrecemos una experiencia culinaria que celebra la rica herencia gastronómica de Portugal.',
-    'menu.download': 'Descargar Menú PDF',
+    'menu.download': 'Menú PDF',
     'menu.downloadText': 'Haz clic para descargar nuestro menú completo en PDF',
     'menu.photoPlaceholder': 'Foto del Menú',
     'menu.portugueseCuisine': 'Cocina Portuguesa',
@@ -989,7 +989,7 @@ const translations = {
     'menu.traditionalMeat': 'Platos de Carne Tradicionales',
     'menu.homemadeBreads': 'Panes y Pastelería Caseros',
     'menu.portugueseWines': 'Vinos y Bebidas Portugueses',
-    'menu.downloadPdf': 'Descargar PDF',
+    'menu.downloadPdf': 'Descargar',
     'gallery.title': 'Galería',
     'gallery.subtitle': 'Momentos Especiales en Amor Meco',
     'gallery.description':
@@ -1222,7 +1222,7 @@ const translations = {
     // Contact Form Labels
     'contact.name': 'Nombre',
     'contact.email': 'Email',
-    'contact.phone': 'Teléfono (Opcional)',
+    'contact.phone': 'Teléfono',
     'contact.subject': 'Asunto',
     'contact.message': 'Mensaje',
     'contact.sendMessage': 'Enviar Mensaje',
@@ -1293,7 +1293,7 @@ const translations = {
     'menu.subtitle': 'Saveurs Traditionnelles avec une Touche Moderne',
     'menu.description':
       "Découvrez les saveurs uniques de la gastronomie portugaise, où chaque plat raconte une histoire de tradition et d'innovation. Des fruits de mer frais aux viandes grillées, et des desserts conventuels, nous offrons une expérience culinaire qui célèbre le riche patrimoine gastronomique du Portugal.",
-    'menu.download': 'Télécharger le Menu PDF',
+    'menu.download': 'Le Menu PDF',
     'menu.downloadText': 'Cliquez pour télécharger notre menu complet en PDF',
     'menu.photoPlaceholder': 'Photo du Menu',
     'menu.portugueseCuisine': 'Cuisine Portugaise',
@@ -1302,7 +1302,7 @@ const translations = {
     'menu.traditionalMeat': 'Plats de Viande Traditionnels',
     'menu.homemadeBreads': 'Pains et Pâtisseries Maison',
     'menu.portugueseWines': 'Vins et Boissons Portugais',
-    'menu.downloadPdf': 'Télécharger PDF',
+    'menu.downloadPdf': 'Télécharger',
     'gallery.title': 'Galerie',
     'gallery.subtitle': 'Moments Spéciaux chez Amor Meco',
     'gallery.description':
@@ -1421,7 +1421,7 @@ const translations = {
     'contact.subtitle': 'Entrez en Contact',
     'contact.name': 'Nom',
     'contact.email': 'Email',
-    'contact.phone': 'Téléphone (Optionnel)',
+    'contact.phone': 'Téléphone',
     'contact.subject': 'Sujet',
     'contact.message': 'Message',
     'contact.sendMessage': 'Envoyer le Message',
@@ -1517,7 +1517,7 @@ const translations = {
     'menu.subtitle': 'Traditionelle Aromen mit Modernem Twist',
     'menu.description':
       'Entdecken Sie die einzigartigen Aromen der portugiesischen Gastronomie, wo jedes Gericht eine Geschichte von Tradition und Innovation erzählt. Von frischen Meeresfrüchten bis zu gegrilltem Fleisch und Klosterdesserts bieten wir eine kulinarische Erfahrung, die das reiche gastronomische Erbe Portugals feiert.',
-    'menu.download': 'Menü PDF Herunterladen',
+    'menu.download': 'Menü PDF',
     'menu.downloadText':
       'Klicken Sie, um unser vollständiges Menü in PDF herunterzuladen',
     'menu.photoPlaceholder': 'Menü Foto',
@@ -1527,7 +1527,7 @@ const translations = {
     'menu.traditionalMeat': 'Traditionelle Fleischgerichte',
     'menu.homemadeBreads': 'Hausgemachte Brote & Gebäck',
     'menu.portugueseWines': 'Portugiesische Weine & Getränke',
-    'menu.downloadPdf': 'PDF Herunterladen',
+    'menu.downloadPdf': 'Herunterladen',
     'gallery.title': 'Galerie',
     'gallery.subtitle': 'Besondere Momente bei Amor Meco',
     'gallery.description':
@@ -1648,7 +1648,7 @@ const translations = {
     'contact.subtitle': 'Kontakt Aufnehmen',
     'contact.name': 'Name',
     'contact.email': 'Email',
-    'contact.phone': 'Telefon (Optional)',
+    'contact.phone': 'Telefon',
     'contact.subject': 'Betreff',
     'contact.message': 'Nachricht',
     'contact.sendMessage': 'Nachricht Senden',

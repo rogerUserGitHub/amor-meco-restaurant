@@ -265,6 +265,19 @@ export default function Navigation() {
 
           {/* Mobile Actions */}
           <div className="lg:hidden flex items-center space-x-2">
+            {/* Mobile Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-gray-700 dark:text-gray-300 hover:text-gold dark:hover:text-gold transition-colors duration-200"
+              title={t('nav.theme')}
+            >
+              {themeMounted && theme === 'light' ? (
+                <Moon size={20} />
+              ) : (
+                <Sun size={20} />
+              )}
+            </button>
+
             {/* Mobile Language Picker */}
             <div className="relative language-picker">
               <button
@@ -419,23 +432,6 @@ export default function Navigation() {
 
               {/* Mobile Actions */}
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700 space-y-4">
-                {/* Theme Toggle */}
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {t('nav.theme')}:
-                  </span>
-                  <button
-                    onClick={toggleTheme}
-                    className="p-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors duration-200"
-                  >
-                    {themeMounted && theme === 'light' ? (
-                      <Moon size={18} />
-                    ) : (
-                      <Sun size={18} />
-                    )}
-                  </button>
-                </div>
-
                 {/* Reservations Button */}
                 <button
                   onClick={() => handleNavigation('reservations')}

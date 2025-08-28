@@ -7,7 +7,6 @@ import {
   useState,
   useCallback,
 } from 'react';
-import { useCookiePreferences } from '../hooks/useCookiePreferences';
 
 type Theme = 'light' | 'dark';
 
@@ -19,55 +18,30 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
-  const { preferences, isLoaded } = useCookiePreferences();
 
-  // Initialize theme only once when component mounts and cookie preferences are loaded
+  // Initialize theme
   useEffect(() => {
-    if (!mounted) {
-      setMounted(true);
-      return;
-    }
+    setMounted(true);
+    setTheme('dark');
+  }, []);
 
-    if (isLoaded && preferences) {
-      // Only load saved theme if preferences cookies are allowed
-      if (preferences.preferences) {
-        const savedTheme = localStorage.getItem('theme') as Theme;
-        if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
-          setTheme(savedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          setTheme('dark');
-        }
-      } else {
-        // Fallback to system preference if no cookie consent
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          setTheme('dark');
-        }
-      }
-    }
-  }, [mounted, isLoaded, preferences]);
-
-  // Apply theme to DOM and save to localStorage
+  // Apply theme to DOM
   useEffect(() => {
-    if (mounted && preferences) {
+    if (mounted) {
       const root = window.document.documentElement;
       root.classList.remove('light', 'dark');
       root.classList.add(theme);
-
-      // Only save to localStorage if preferences cookies are allowed
-      if (preferences.preferences) {
-        localStorage.setItem('theme', theme);
-      }
     }
-  }, [theme, mounted, preferences]);
+  }, [theme, mounted]);
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   }, []);
 
   if (!mounted) {
-    return <div className="light">{children}</div>;
+    return <div className="dark">{children}</div>;
   }
 
   return (

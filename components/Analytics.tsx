@@ -11,8 +11,6 @@ export default function Analytics() {
 
     if (preferences.analytics) {
       // Initialize analytics here
-      console.log('Analytics enabled - loading tracking scripts');
-
       // Example: Google Analytics
       // if (typeof window !== 'undefined' && window.gtag) {
       //   window.gtag('config', 'GA_MEASUREMENT_ID', {
@@ -20,7 +18,6 @@ export default function Analytics() {
       //     page_location: window.location.href,
       //   });
       // }
-
       // Example: Facebook Pixel
       // if (typeof window !== 'undefined' && window.fbq) {
       //   window.fbq('init', 'FB_PIXEL_ID');

@@ -2,86 +2,74 @@
 
 import { useState, useEffect } from 'react';
 import { useLanguage } from './LanguageProvider';
+import {
+  useCookiePreferences,
+  type CookiePreferences,
+} from '../hooks/useCookiePreferences';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X, Settings, Check } from 'lucide-react';
 
-type CookiePreferences = {
-  essential: boolean;
-  analytics: boolean;
-  preferences: boolean;
-};
-
 export default function CookieBanner() {
   const { t } = useLanguage();
+  const { preferences, isLoaded, updatePreferences } = useCookiePreferences();
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [preferences, setPreferences] = useState<CookiePreferences>({
-    essential: true,
-    analytics: false,
-    preferences: false,
-  });
+  const [localPreferences, setLocalPreferences] =
+    useState<CookiePreferences | null>(null);
 
   useEffect(() => {
-    const cookieConsent = localStorage.getItem('cookieConsent');
-    if (!cookieConsent) {
-      setIsVisible(true);
+    if (isLoaded) {
+      const hasConsent = localStorage.getItem('cookieConsent');
+      if (!hasConsent) {
+        setIsVisible(true);
+      }
     }
-  }, []);
+  }, [isLoaded]);
+
+  useEffect(() => {
+    if (preferences) {
+      setLocalPreferences(preferences);
+    }
+  }, [preferences]);
 
   const handleAcceptAll = () => {
-    const allAccepted: CookiePreferences = {
+    const allAccepted = {
       essential: true,
       analytics: true,
       preferences: true,
     };
-    saveCookiePreferences(allAccepted);
+    updatePreferences(allAccepted);
     setIsVisible(false);
   };
 
   const handleRejectAll = () => {
-    const onlyEssential: CookiePreferences = {
+    const onlyEssential = {
       essential: true,
       analytics: false,
       preferences: false,
     };
-    saveCookiePreferences(onlyEssential);
+    updatePreferences(onlyEssential);
     setIsVisible(false);
   };
 
   const handleSavePreferences = () => {
-    saveCookiePreferences(preferences);
-    setIsVisible(false);
-    setShowSettings(false);
-  };
-
-  const saveCookiePreferences = (prefs: CookiePreferences) => {
-    localStorage.setItem('cookieConsent', JSON.stringify(prefs));
-    localStorage.setItem('cookieConsentDate', new Date().toISOString());
-    applyCookiePreferences(prefs);
-  };
-
-  const applyCookiePreferences = (prefs: CookiePreferences) => {
-    if (prefs.analytics) {
-      console.log('Analytics cookies enabled');
-    } else {
-      console.log('Analytics cookies disabled');
-    }
-    if (prefs.preferences) {
-      console.log('Preference cookies enabled');
-    } else {
-      console.log('Preference cookies disabled');
+    if (localPreferences) {
+      updatePreferences(localPreferences);
+      setIsVisible(false);
+      setShowSettings(false);
     }
   };
 
-  const handlePreferenceChange = (type: keyof CookiePreferences) => {
-    if (type === 'essential') return;
-    setPreferences((prev) => ({
-      ...prev,
-      [type]: !prev[type],
+  const handlePreferenceChange = (type: 'analytics' | 'preferences') => {
+    if (!localPreferences) return;
+
+    setLocalPreferences((prev: CookiePreferences | null) => ({
+      ...prev!,
+      [type]: !prev![type],
     }));
   };
 
-  if (!isVisible) return null;
+  if (!isLoaded || !isVisible) return null;
 
   return (
     <AnimatePresence>
@@ -158,7 +146,7 @@ export default function CookieBanner() {
                   <div className="flex items-center">
                     <input
                       type="checkbox"
-                      checked={preferences.essential}
+                      checked={localPreferences?.essential}
                       disabled
                       className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary"
                     />
@@ -179,7 +167,7 @@ export default function CookieBanner() {
                   </div>
                   <input
                     type="checkbox"
-                    checked={preferences.analytics}
+                    checked={localPreferences?.analytics}
                     onChange={() => handlePreferenceChange('analytics')}
                     className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary"
                   />
@@ -196,7 +184,7 @@ export default function CookieBanner() {
                   </div>
                   <input
                     type="checkbox"
-                    checked={preferences.preferences}
+                    checked={localPreferences?.preferences}
                     onChange={() => handlePreferenceChange('preferences')}
                     className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary"
                   />

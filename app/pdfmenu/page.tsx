@@ -17,7 +17,6 @@ export default function PDFMenuPage() {
   const handleDownload = () => {
     // In a real implementation, this would download the PDF in the selected language
     const filename = `amor-meco-menu-${selectedLanguage}.pdf`;
-    console.log(`Downloading ${filename}`);
 
     // Simulate download
     const link = document.createElement('a');
