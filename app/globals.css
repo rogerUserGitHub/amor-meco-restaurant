@@ -113,9 +113,10 @@
   @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
 }
 
-/* Smooth transitions for theme switching */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* Prevent horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Smooth transitions for theme switching */

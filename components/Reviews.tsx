@@ -144,7 +144,7 @@ export default function Reviews() {
   }, [startAutoPlay, stopAutoPlay]);
 
   return (
-    <section className="section-padding bg-white dark:bg-gray-800">
+    <section className="section-padding bg-white dark:bg-gray-800 overflow-hidden">
       <div className="container-custom">
         <div className="text-center mb-16">
           <motion.h2
@@ -169,7 +169,7 @@ export default function Reviews() {
 
         {/* Carousel Container */}
         <motion.div
-          className="relative max-w-4xl mx-auto"
+          className="relative max-w-4xl mx-auto overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -234,14 +234,14 @@ export default function Reviews() {
           {/* Navigation Arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-10"
+            className="absolute left-1 md:left-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-10"
             aria-label="Previous review"
           >
             <ChevronLeft size={20} className="text-primary" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-10"
+            className="absolute right-1 md:right-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-2 md:p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-10"
             aria-label="Next review"
           >
             <ChevronRight size={20} className="text-primary" />
