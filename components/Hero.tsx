@@ -49,7 +49,7 @@ export default function Hero() {
           >
             <img
               src="/images/logo-large.jpg"
-              alt="Amor Meco Restaurant Logo"
+              alt="Amor Meco Restaurant Logo em Aldeia do Meco"
               className="w-20 h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full object-cover mx-auto shadow-2xl border-4 border-white/20"
             />
           </motion.div>

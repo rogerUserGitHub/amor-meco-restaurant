@@ -396,7 +396,7 @@ const translations = {
       'Maak uw speciale evenement nog memorabeler met onze gepersonaliseerde cateringdiensten.',
     'events.weddings.title': 'Trouwerijen',
     'events.weddings.description':
-      'Voor jou speciale dag bieden wat jullie graag wensen, van receptie tot dinner tot dans. ',
+      'Voor jou speciale dag bieden wat jullie graag wensen, van receptie tot dinner tot dans. ',
     'events.birthdays.title': 'Verjaardagen',
     'events.birthdays.description':
       "Maak van uw verjaardag een memorabele gelegenheid met onze speciale menu's.",
@@ -456,7 +456,7 @@ const translations = {
     'about.story1':
       'Olá, hello, hallo 👋',
     'about.story2':
-      'Wij zijn Killian en Amorion, Belgische man Nederlandse vrouw. We waren allebei verliefd op Portugal voordat we verliefd werden op elkaar. Daarbij geloven wij in de slogan ‘liefde gaat door de maag’ en zo een ervaring maakt het beter met de mensen die je graag hebt, ‘sharing is caring’. ',
+      'Wij zijn Killian en Amorion, Belgische man Nederlandse vrouw. We waren allebei verliefd op Portugal voordat we verliefd werden op elkaar. Daarbij geloven wij in de slogan <liefde gaat door de maag> en zo een ervaring maakt het beter met de mensen die je graag hebt, <sharing is caring> ',
     'about.values.title': 'Onze Waarden',
     'about.values.passion.title': 'Passie voor Voedsel',
     'about.values.passion.description':
@@ -472,7 +472,7 @@ const translations = {
       'Het combineren van traditionele technieken met moderne culinaire innovatie.',
     'about.ourStory': 'Ons Verhaal',
     'about.story3':
-      'Amor is een restaurant waar sharing dishes centraal staat en waarbij je een exceptionele ervaring willen bieden voor het smaken pallet en de gezelligheid. Daarbij houden we van mensen bij elkaar brengen, evenementen organiseren is wat ons bij elkaar heeft gebracht en wat we graag doen. Voor groot en klein, op maat en voor iedereen: Muzikanten, jarigen of gewoon een fijne samenkomst. Contacteer ons en we maken er iets onvergetelijk van. ',
+      'Amor is een restaurant waar sharing dishes centraal staat en waarbij je een exceptionele ervaring willen bieden voor het smaken pallet en de gezelligheid. Daarbij houden we van mensen bij elkaar brengen, evenementen organiseren is wat ons bij elkaar heeft gebracht en wat we graag doen. Voor groot en klein, op maat en voor iedereen: Muzikanten, jarigen of gewoon een fijne samenkomst. Contacteer ons en we maken er iets onvergetelijk van. ',
     'about.ourPhilosophy': 'Onze Filosofie',
     'about.philosophyDescription':
       'Bij Amor geloven we dat goed eten meer is dan alleen smaak—het is een ervaring die mensen samenbrengt. Onze filosofie draait om drie kernprincipes: authenticiteit, kwaliteit en gastvrijheid.',
@@ -1522,13 +1522,13 @@ const translations = {
     'footer.sunday': 'Dimanche',
     'footer.closed': 'Fermé',
     'footer.copyright': '© {year} Restaurant Amor Meco. Tous droits réservés.',
-    'footer.privacy': 'Politique de Confidentialité & Cookies',
-    'footer.terms': 'Conditions de Service',
-    'footer.cookies': 'Politique de Cookies',
+    'footer.privacy': 'Datenschutz & Cookie-Richtlinie',
+    'footer.terms': 'Nutzungsbedingungen',
+    'footer.cookies': 'Cookie-Richtlinie',
     'footer.address': 'Adresse',
-    'footer.phone': 'Téléphone',
+    'footer.phone': 'Telefon',
     'footer.email': 'Email',
-    'footer.opening': "Heures d'Ouverture",
+    'footer.opening': 'Öffnungszeiten',
   },
   de: {
     'nav.home': 'Startseite',
@@ -1664,47 +1664,45 @@ const translations = {
       'Amor ist ein Restaurant, wo geteilte Gerichte im Zentrum stehen und wir eine außergewöhnliche Erfahrung für die Geschmackspalette und Geselligkeit bieten wollen. Wir lieben es, Menschen zusammenzubringen, Veranstaltungen zu organisieren ist es, was uns zusammengebracht hat und was wir gerne tun. Für groß und klein, maßgeschneidert und für alle: Musiker, Geburtstagskinder oder einfach eine schöne Zusammenkunft. Kontaktieren Sie uns und wir machen etwas Unvergessliches.',
     'about.ourPhilosophy': 'Unsere Philosophie',
     'about.philosophyDescription':
-      'Bei Amor Meco glauben wir, dass gutes Essen mehr ist als nur Geschmack—es ist eine Erfahrung, die Menschen zusammenbringt. Unsere Philosophie konzentriert sich auf drei Grundprinzipien: Authentizität, Qualität und Gastfreundschaft.',
-    'about.authenticity': 'Authentizität',
+      'Bei Amor Meco glauben wir, dass gutes Essen mehr ist als nur Geschmack—es ist eine Erfahrung, die Menschen zusammenbringt. Unsere Philosophie konzentriert sich auf drei Grundprinzipien: authenticiteit, kwaliteit en gastvrijheid.',
+    'about.authenticity': 'Authenticiteit',
     'about.authenticityDescription':
-      'Wir bleiben unseren Rezepten und Kochmethoden treu und bewahren die authentischen Aromen.',
-    'about.quality': 'Qualität',
+      'We blijven trouw aan onze recepten en kookmethoden, en behouden de authentieke smaken.',
+    'about.quality': 'Kwaliteit',
     'about.qualityDescription':
-      'Wir beziehen nur die besten Zutaten, arbeiten mit lokalen Produzenten zusammen und wählen Premium-Produkte aus, um außergewöhnliche Qualität in jedem Gericht zu gewährleisten.',
-    'about.hospitality': 'Gastfreundschaft',
+      'We kopen alleen de beste ingrediënten in, werken samen met lokale producenten en selecteren premium producten om uitzonderlijke kwaliteit in elk gerecht te garanderen. ',
+    'about.hospitality': 'Gastvrijheid',
     'about.hospitalityDescription':
-      'Wir behandeln jeden Gast wie Familie und schaffen eine warme, einladende Atmosphäre, in der Erinnerungen geschaffen und Traditionen gefeiert werden.',
-    'about.team.title': 'Unser Team',
-    'about.team.subtitle': 'Engagierte Köche',
-    'contact.title': 'Kontakt',
-    'contact.subtitle': 'Kontakt Aufnehmen',
-    'contact.name': 'Name',
+      'We behandelen elke gast als familie, creëren een warme en gastvrije sfeer waar herinneringen worden gemaakt en tradities worden gevierd.',
+    'about.team.title': 'Ons Team',
+    'about.team.subtitle': 'Toegewijde Chefs',
+    'contact.title': 'Contact',
+    'contact.subtitle': 'Toegang tot Contact',
+    'contact.name': 'Naam',
     'contact.email': 'Email',
-    'contact.phone': 'Telefon',
-    'contact.subject': 'Betreff',
-    'contact.message': 'Nachricht',
-    'contact.sendMessage': 'Nachricht Senden',
-    'contact.sending': 'Senden...',
-    'contact.successMessage': 'Nachricht erfolgreich gesendet!',
-    'contact.errorMessage':
-      'Bitte überprüfen Sie das Formular und versuchen Sie es erneut.',
+    'contact.phone': 'Telefoon',
+    'contact.subject': 'Onderwerp',
+    'contact.message': 'Bericht',
+    'contact.sendMessage': 'Bericht Versturen',
+    'contact.sending': 'Versturen...',
+    'contact.successMessage': 'Bericht succesvol verzonden!',
+    'contact.errorMessage': 'Controleer het formulier en probeer het opnieuw.',
     'contact.submissionError':
-      'Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.',
-    'contact.sendUsMessage': 'Senden Sie uns eine Nachricht',
-    'contact.namePlaceholder': 'Ihr Name',
-    'contact.emailPlaceholder': 'ihre.email@beispiel.com',
-    'contact.optional': 'Optional',
-    'contact.phonePlaceholder': '+351 123 456 789 (optional)',
-    'contact.subjectPlaceholder': 'Worum geht es?',
-    'contact.messagePlaceholder':
-      'Sagen Sie uns, wie wir Ihnen helfen können...',
-    'contact.getInTouch': 'Kontakt Aufnehmen',
-    'contact.address': 'Adresse',
-    'contact.openingHours': 'Öffnungszeiten',
-    'contact.followUs': 'Folgen Sie Uns',
+      "Échec de l'envoi du message. Veuillez réessayer plus tard.",
+    'contact.sendUsMessage': 'Stuur ons een Bericht',
+    'contact.namePlaceholder': 'Uw naam',
+    'contact.emailPlaceholder': 'uw.email@voorbeeld.com',
+    'contact.optional': 'Optioneel',
+    'contact.phonePlaceholder': '+351 123 456 789 (optioneel)',
+    'contact.subjectPlaceholder': 'Wat gaat het over?',
+    'contact.messagePlaceholder': 'Vertel ons hoe we u kunnen helpen...',
+    'contact.getInTouch': 'Neem Contact Op',
+    'contact.address': 'Adres',
+    'contact.openingHours': 'Openingstijden',
+    'contact.followUs': 'Volg Ons',
     'contact.facebook': 'Facebook',
     'contact.instagram': 'Instagram',
-    'contact.findUs': 'Finden Sie Uns',
+    'contact.findUs': 'Vind Ons',
     'language.pt': 'Português',
     'language.nl': 'Nederlands',
     'language.en': 'English',
@@ -1767,8 +1765,14 @@ const translations = {
   },
 };
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('pt');
+export function LanguageProvider({ 
+  children, 
+  initialLanguage 
+}: { 
+  children: React.ReactNode
+  initialLanguage?: string 
+}) {
+  const [language, setLanguageState] = useState<Language>((initialLanguage as Language) || 'pt')
   const [mounted, setMounted] = useState(false);
   const { preferences, isLoaded } = useCookiePreferences();
 

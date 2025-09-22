@@ -7,6 +7,9 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from './LanguageProvider';
 
+// Define Language type for type safety
+type Language = 'pt' | 'nl' | 'en' | 'es' | 'fr' | 'de';
+
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,6 +39,44 @@ export default function Navigation() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Hash-based routing scroll listener
+  useEffect(() => {
+    if (!isHomePage) return;
+
+    const sections = ['menu', 'reservations', 'events', 'gallery', 'about', 'reviews', 'contact'];
+    
+    const updateHashOnScroll = () => {
+      const scrollPosition = window.scrollY + 100; // Offset for navigation height
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const element = document.getElementById(section);
+        if (element && element.offsetTop <= scrollPosition) {
+          const newHash = `#${section}`;
+          if (window.location.hash !== newHash) {
+            window.history.replaceState(null, '', newHash);
+          }
+          break;
+        }
+      }
+    };
+
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledScrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateHashOnScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
+    return () => window.removeEventListener('scroll', throttledScrollHandler);
+  }, [isHomePage]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -70,7 +111,7 @@ export default function Navigation() {
   const handleNavigation = useCallback(
     (section: string) => {
       if (isHomePage) {
-        // If we're on the home page, scroll to the section
+        // If we're on the home page, scroll to the section and update URL
         const element = document.getElementById(section);
         if (element) {
           const navHeight = 80;
@@ -79,6 +120,8 @@ export default function Navigation() {
             top: elementPosition,
             behavior: 'smooth',
           });
+          // Update the URL hash
+          window.history.pushState(null, '', `#${section}`);
         }
       } else {
         // If we're on another page, navigate to home page with hash
@@ -100,6 +143,13 @@ export default function Navigation() {
     };
     return flags[lang as keyof typeof flags] || '🇵🇹';
   };
+
+  // Language switching for hash-based routing (client-side only)
+  const switchLanguage = (newLanguage: string) => {
+    // Simply update the language state - no URL navigation needed
+    setLanguage(newLanguage as Language)
+    setIsLanguageMenuOpen(false) // Close the language menu
+  }
 
   return (
     <nav
@@ -179,7 +229,7 @@ export default function Navigation() {
               </button>
               <div className="absolute top-full right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <button
-                  onClick={() => setLanguage('pt')}
+                  onClick={() => switchLanguage('pt')}
                   className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
                     language === 'pt'
                       ? 'text-gold font-medium'
@@ -189,7 +239,7 @@ export default function Navigation() {
                   {languageMounted ? t('language.pt') : 'Português'}
                 </button>
                 <button
-                  onClick={() => setLanguage('nl')}
+                  onClick={() => switchLanguage('nl')}
                   className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
                     language === 'nl'
                       ? 'text-gold font-medium'
@@ -199,7 +249,7 @@ export default function Navigation() {
                   {languageMounted ? t('language.nl') : 'Nederlands'}
                 </button>
                 <button
-                  onClick={() => setLanguage('en')}
+                  onClick={() => switchLanguage('en')}
                   className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
                     language === 'en'
                       ? 'text-gold font-medium'
@@ -209,7 +259,7 @@ export default function Navigation() {
                   {languageMounted ? t('language.en') : 'English'}
                 </button>
                 <button
-                  onClick={() => setLanguage('es')}
+                  onClick={() => switchLanguage('es')}
                   className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
                     language === 'es'
                       ? 'text-gold font-medium'
@@ -219,7 +269,7 @@ export default function Navigation() {
                   {languageMounted ? t('language.es') : 'Español'}
                 </button>
                 <button
-                  onClick={() => setLanguage('fr')}
+                  onClick={() => switchLanguage('fr')}
                   className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
                     language === 'fr'
                       ? 'text-gold font-medium'
@@ -229,7 +279,7 @@ export default function Navigation() {
                   {languageMounted ? t('language.fr') : 'Français'}
                 </button>
                 <button
-                  onClick={() => setLanguage('de')}
+                  onClick={() => switchLanguage('de')}
                   className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
                     language === 'de'
                       ? 'text-gold font-medium'
@@ -293,7 +343,7 @@ export default function Navigation() {
                 <div className="absolute top-full right-0 mt-2 w-40 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-lg shadow-lg z-10">
                   <button
                     onClick={() => {
-                      setLanguage('pt');
+                      switchLanguage('pt');
                       setIsLanguageMenuOpen(false);
                     }}
                     className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
@@ -307,7 +357,7 @@ export default function Navigation() {
                   </button>
                   <button
                     onClick={() => {
-                      setLanguage('nl');
+                      switchLanguage('nl');
                       setIsLanguageMenuOpen(false);
                     }}
                     className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
@@ -321,7 +371,7 @@ export default function Navigation() {
                   </button>
                   <button
                     onClick={() => {
-                      setLanguage('en');
+                      switchLanguage('en');
                       setIsLanguageMenuOpen(false);
                     }}
                     className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
@@ -335,7 +385,7 @@ export default function Navigation() {
                   </button>
                   <button
                     onClick={() => {
-                      setLanguage('es');
+                      switchLanguage('es');
                       setIsLanguageMenuOpen(false);
                     }}
                     className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
@@ -349,7 +399,7 @@ export default function Navigation() {
                   </button>
                   <button
                     onClick={() => {
-                      setLanguage('fr');
+                      switchLanguage('fr');
                       setIsLanguageMenuOpen(false);
                     }}
                     className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
@@ -363,7 +413,7 @@ export default function Navigation() {
                   </button>
                   <button
                     onClick={() => {
-                      setLanguage('de');
+                      switchLanguage('de');
                       setIsLanguageMenuOpen(false);
                     }}
                     className={`w-full flex items-center space-x-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${

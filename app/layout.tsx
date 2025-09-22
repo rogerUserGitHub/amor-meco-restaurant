@@ -10,6 +10,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import dynamic from 'next/dynamic';
 import { Toaster } from 'react-hot-toast';
+import { faqSchema } from '@/lib/schema';
 
 // Dynamic imports for better performance
 const CookieBanner = dynamic(() => import('@/components/CookieBanner'), {
@@ -30,11 +31,11 @@ const CookieSettings = dynamic(() => import('@/components/CookieSettings'), {
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Amor Meco Restaurant | Fine Dining Experience',
+  title: 'Restaurante Amor Meco em Aldeia do Meco | Cozinha Portuguesa Autêntica',
   description:
-    'Experience the finest Portuguese cuisine at Amor Meco Restaurant. Authentic flavors, warm atmosphere, and unforgettable dining moments.',
+    'Experience authentic Portuguese cuisine with international flavors at Amor Meco Restaurant in Aldeia do Meco, Setúbal. Traditional recipes, warm atmosphere, and unforgettable dining moments.',
   keywords:
-    'restaurant, Portuguese cuisine, local food, Amor Meco, Sesimbra, reservations, lunch, dinner, events',
+    'restaurante Aldeia do Meco, cozinha portuguesa Setúbal, Amor Meco, restaurante Setúbal, jantar Aldeia do Meco, reservas, eventos, cozinha autêntica portuguesa',
   authors: [{ name: 'Amor Meco Restaurant' }],
   creator: 'Amor Meco Restaurant',
   publisher: 'Amor Meco Restaurant',
@@ -44,19 +45,10 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL('https://amormeco.pt'),
-  alternates: {
-    canonical: 'https://amormeco.pt',
-    languages: {
-      pt: 'https://amormeco.pt/pt',
-      nl: 'https://amormeco.pt/nl',
-      en: 'https://amormeco.pt/en',
-      es: 'https://amormeco.pt/es',
-    },
-  },
   openGraph: {
-    title: 'Amor Meco Restaurant | Fine Dining Experience',
+    title: 'Restaurante Amor Meco em Aldeia do Meco | Cozinha Portuguesa Autêntica',
     description:
-      'Experience the finest Portuguese cuisine at Amor Meco Restaurant.',
+      'Experience authentic Portuguese cuisine with international flavors at Amor Meco Restaurant in Aldeia do Meco, Setúbal.',
     url: 'https://amormeco.pt',
     siteName: 'Amor Meco Restaurant',
     images: [
@@ -64,7 +56,7 @@ export const metadata: Metadata = {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Amor Meco Restaurant',
+        alt: 'Restaurante Amor Meco em Aldeia do Meco - Cozinha Portuguesa Autêntica',
       },
     ],
     locale: 'pt_PT',
@@ -72,9 +64,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Amor Meco Restaurant | Fine Dining Experience',
+    title: 'Restaurante Amor Meco em Aldeia do Meco | Cozinha Portuguesa Autêntica',
     description:
-      'Experience the finest Portuguese cuisine at Amor Meco Restaurant.',
+      'Experience authentic Portuguese cuisine with international flavors at Amor Meco Restaurant in Aldeia do Meco, Setúbal.',
     images: ['/images/og-image.jpg'],
   },
   robots: {
@@ -93,38 +85,70 @@ export const metadata: Metadata = {
   },
 };
 
-// Restaurant Schema.org structured data
+// Restaurant Schema.org structured data with Local Business markup
 const restaurantSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Restaurant',
+  '@type': ['Restaurant', 'LocalBusiness'],
   name: 'Amor Meco Restaurant',
   description:
-    'Experience the finest Portuguese cuisine at Amor Meco Restaurant. Authentic flavors, warm atmosphere, and unforgettable dining moments.',
+    'Experience authentic Portuguese cuisine with international flavors at Amor Meco Restaurant in Aldeia do Meco, Setúbal. Traditional recipes, warm atmosphere, and unforgettable dining moments.',
   url: 'https://amormeco.pt',
   telephone: '+351123456789',
   email: 'info@amormeco.pt',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'R. Praia Moinho de Baixo 1',
-    addressLocality: 'Sesimbra',
+    addressLocality: 'Aldeia do Meco',
+    addressRegion: 'Setúbal',
     postalCode: '2970-074',
     addressCountry: 'PT',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 38.4447,
-    longitude: -9.1014,
+    latitude: 38.4400,
+    longitude: -9.1000,
   },
-  openingHours: ['Mo:Closed', 'Tu-Fr:12:00-23:00', 'Sa-Su:12:00-23:00'],
-  servesCuisine: ['Portuguese', 'Mediterranean'],
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'Aldeia do Meco'
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Setúbal'
+    },
+    {
+      '@type': 'City',
+      name: 'Sesimbra'
+    }
+  ],
+  openingHours: ['Tu-Fr:12:00-23:00', 'Sa-Su:12:00-23:00'],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '12:00',
+      closes: '23:00'
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday', 'Sunday'],
+      opens: '12:00',
+      closes: '23:00'
+    }
+  ],
+  servesCuisine: ['Portuguese', 'Mediterranean', 'International'],
   priceRange: '€€',
   acceptsReservations: true,
+  paymentAccepted: ['Cash', 'Credit Card'],
+  currenciesAccepted: 'EUR',
   hasMenu: 'https://amormeco.pt/menu',
   image: 'https://amormeco.pt/images/restaurant.jpg',
+  hasMap: 'https://www.google.com/maps/place/R.+Praia+Moinho+de+Baixo+1,+2970-074+Portugal',
   sameAs: [
     'http://facebook.com/profile.php?id=61579636772354',
-    'https://www.instagram.com/amor.meco',
-  ],
+    'https://www.instagram.com/amor.meco'
+  ]
 };
 
 // Loading component
@@ -196,6 +220,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(restaurantSchema),
+          }}
+        />
+        
+        {/* FAQ Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema),
           }}
         />
 

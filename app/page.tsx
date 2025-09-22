@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import Hero from '@/components/Hero';
 import Menu from '@/components/Menu';
 import Gallery from '@/components/Gallery';
@@ -8,6 +11,38 @@ import About from '@/components/About';
 import Reviews from '@/components/Reviews';
 
 export default function Home() {
+  useEffect(() => {
+    // Handle hash-based routing on page load
+    const handleHashRouting = () => {
+      const hash = window.location.hash.substring(1); // Remove the #
+      if (hash) {
+        const element = document.getElementById(hash);
+        if (element) {
+          // Wait for the page to fully load before scrolling
+          setTimeout(() => {
+            const navHeight = 80; // Navigation bar height
+            const elementPosition = element.offsetTop - navHeight;
+            window.scrollTo({
+              top: elementPosition,
+              behavior: 'smooth',
+            });
+          }, 100);
+        }
+      }
+    };
+
+    // Handle initial load
+    handleHashRouting();
+
+    // Handle hash changes (when user navigates with browser back/forward)
+    const handleHashChange = () => {
+      handleHashRouting();
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   return (
     <div className="relative">
       {/* Hero Section */}

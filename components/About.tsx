@@ -96,7 +96,7 @@ export default function About() {
         >
           <img
             src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Amor Meco restaurant interior"
+            alt="Interior do restaurante Amor Meco em Aldeia do Meco"
             className="w-full h-96 object-cover rounded-2xl"
             loading="lazy"
           />

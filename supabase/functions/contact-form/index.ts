@@ -131,10 +131,10 @@ async function sendNotificationEmail(contactData: ContactFormData) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Acme <onboarding@resend.dev>', // from: 'Contact Form <no-reply@amormeco.pt>', // ✅ verified domain
-        to: 'roger.dirkx@gmail.com', // your inbox
+        from: 'Contact Form <no-reply@amormeco.pt>',
+        to: 'info@amormeco.pt',
         subject: contactData.subject || 'New Contact Form Submission',
-        reply_to: contactData.email, // so you can reply directly to the user
+        reply_to: contactData.email,
         html: `
           <h2>New Contact Form Submission</h2>
           <p><strong>Name:</strong> ${contactData.name}</p>
