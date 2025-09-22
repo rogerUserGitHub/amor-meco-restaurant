@@ -32,9 +32,9 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container-custom py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
           {/* Logo & Tagline */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-3">
             <div className="flex items-center space-x-3 mb-4">
               {/* Logo */}
               <img
@@ -90,7 +90,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="lg:col-span-2">
             <h4 className="text-lg font-semibold mb-4 text-gold">
               {t('footer.quickLinks')}
             </h4>
@@ -147,7 +147,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="lg:col-span-3">
             <h4 className="text-lg font-semibold mb-4 text-gold">
               {t('footer.contactInfo')}
             </h4>
@@ -182,30 +182,30 @@ export default function Footer() {
           </div>
 
           {/* Opening Hours */}
-          <div>
+          <div className="lg:col-span-4">
             <h4 className="text-lg font-semibold mb-4 text-gold">
               {t('footer.openingHours')}
             </h4>
-            <div className="space-y-2">
-              <div className="flex justify-between">
-                <span className="text-gray-300 text-sm">
-                  {t('footer.monday')}
+            <div className="space-y-3">
+              <div className="flex flex-col sm:flex-row sm:justify-between">
+                <span className="text-gray-300 text-sm mb-1 sm:mb-0">
+                  {t('footer.monday')} - {t('footer.tuesday')}
                 </span>
                 <span className="text-gray-300 text-sm">
                   {t('footer.closed')}
                 </span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-300 text-sm">
-                  {t('footer.tuesday')} - {t('footer.friday')}
+              <div className="flex flex-col sm:flex-row sm:justify-between">
+                <span className="text-gray-300 text-sm mb-1 sm:mb-0">
+                  {t('footer.wednesday')} - {t('footer.saturday')}
                 </span>
-                <span className="text-gray-300 text-sm">12:00 - 23:00</span>
+                <span className="text-gray-300 text-sm">12:00 - 15:00, 18:00 - 23:00</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-300 text-sm">
-                  {t('footer.saturday')} - {t('footer.sunday')}
+              <div className="flex flex-col sm:flex-row sm:justify-between">
+                <span className="text-gray-300 text-sm mb-1 sm:mb-0">
+                  {t('footer.sunday')}
                 </span>
-                <span className="text-gray-300 text-sm">12:00 - 23:00</span>
+                <span className="text-gray-300 text-sm">12:00 - 15:00, 18:00 - 22:00</span>
               </div>
             </div>
           </div>

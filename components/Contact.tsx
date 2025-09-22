@@ -169,12 +169,11 @@ export default function Contact() {
 
   const openingHours = useMemo(
     () => [
-      { day: 'Monday', hours: 'Closed' },
-      { day: 'Tuesday - Friday', hours: '12:00 - 15:00, 18:00 - 23:00' },
-      { day: 'Saturday', hours: '12:00 - 15:00, 18:00 - 23:00' },
-      { day: 'Sunday', hours: '12:00 - 15:00, 18:00 - 22:00' },
+      { day: t('contact.openingHours.mondayTuesday'), hours: t('contact.openingHours.closed') },
+      { day: t('contact.openingHours.wednesdaySaturday'), hours: t('contact.openingHours.lunchDinner') },
+      { day: t('contact.openingHours.sunday'), hours: t('contact.openingHours.sundayHours') },
     ],
-    []
+    [t]
   );
 
   // Google Maps embed URL for the actual address
