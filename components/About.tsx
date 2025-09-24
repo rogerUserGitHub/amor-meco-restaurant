@@ -96,9 +96,11 @@ export default function About() {
         >
           <img
             src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            alt="Interior do restaurante Amor Meco em Aldeia do Meco"
+            alt="Interior acolhedor do restaurante Amor Meco em Aldeia do Meco, Setúbal - ambiente tradicional português com decoração rústica"
             className="w-full h-96 object-cover rounded-2xl"
             loading="lazy"
+            width="800"
+            height="400"
           />
         </motion.div>
 

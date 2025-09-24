@@ -86,6 +86,8 @@ export default function Gallery() {
                     alt={image.alt}
                     className="w-full h-full object-cover"
                     loading="lazy"
+                    width="1200"
+                    height="600"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   <div className="absolute bottom-8 left-8 right-8 text-white">

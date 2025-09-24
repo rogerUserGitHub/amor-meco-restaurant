@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   description:
     'Experience authentic Portuguese cuisine with international flavors at Amor Meco Restaurant in Aldeia do Meco, Setúbal. Traditional recipes, warm atmosphere, and unforgettable dining moments.',
   keywords:
-    'restaurante Aldeia do Meco, cozinha portuguesa Setúbal, Amor Meco, restaurante Setúbal, jantar Aldeia do Meco, reservas, eventos, cozinha autêntica portuguesa',
+    'restaurante Aldeia do Meco, restaurante Sesimbra, cozinha portuguesa Setúbal, Amor Meco, restaurante Setúbal, jantar Aldeia do Meco, reservas, eventos, cozinha autêntica portuguesa',
   authors: [{ name: 'Amor Meco Restaurant' }],
   creator: 'Amor Meco Restaurant',
   publisher: 'Amor Meco Restaurant',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: 'Amor Meco Restaurant',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/images/logo-large.jpg',
         width: 1200,
         height: 630,
         alt: 'Restaurante Amor Meco em Aldeia do Meco - Cozinha Portuguesa Autêntica',
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: 'Restaurante Amor Meco em Aldeia do Meco | Cozinha Portuguesa Autêntica',
     description:
       'Experience authentic Portuguese cuisine with international flavors at Amor Meco Restaurant in Aldeia do Meco, Setúbal.',
-    images: ['/images/og-image.jpg'],
+    images: ['/images/logo-large.jpg'],
   },
   robots: {
     index: true,
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
 // Restaurant Schema.org structured data with Local Business markup
 const restaurantSchema = {
   '@context': 'https://schema.org',
-  '@type': ['Restaurant', 'LocalBusiness'],
+  '@type': ['Restaurant', 'LocalBusiness', 'FoodEstablishment'],
   name: 'Amor Meco Restaurant',
   description:
     'Experience authentic Portuguese cuisine with international flavors at Amor Meco Restaurant in Aldeia do Meco, Setúbal. Traditional recipes, warm atmosphere, and unforgettable dining moments.',
@@ -122,19 +122,31 @@ const restaurantSchema = {
       name: 'Sesimbra'
     }
   ],
-  openingHours: ['Tu-Fr:12:00-23:00', 'Sa-Su:12:00-23:00'],
+  openingHours: ['We-Sa:12:00-15:00,18:00-23:00', 'Su:12:00-15:00,18:00-22:00'],
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      dayOfWeek: ['Wednesday', 'Thursday', 'Friday', 'Saturday'],
       opens: '12:00',
+      closes: '15:00'
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '18:00',
       closes: '23:00'
     },
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Saturday', 'Sunday'],
+      dayOfWeek: ['Sunday'],
       opens: '12:00',
-      closes: '23:00'
+      closes: '15:00'
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Sunday'],
+      opens: '18:00',
+      closes: '22:00'
     }
   ],
   servesCuisine: ['Portuguese', 'Mediterranean', 'International'],
@@ -142,8 +154,10 @@ const restaurantSchema = {
   acceptsReservations: true,
   paymentAccepted: ['Cash', 'Credit Card'],
   currenciesAccepted: 'EUR',
-  hasMenu: 'https://amormeco.pt/menu',
-  image: 'https://amormeco.pt/images/restaurant.jpg',
+  hasMenu: 'https://amormeco.pt/#menu',
+  menu: 'https://amormeco.pt/#menu',
+  image: 'https://amormeco.pt/images/logo-large.jpg',
+  logo: 'https://amormeco.pt/images/logo-large.jpg',
   hasMap: 'https://www.google.com/maps/place/R.+Praia+Moinho+de+Baixo+1,+2970-074+Portugal',
   sameAs: [
     'http://facebook.com/profile.php?id=61579636772354',
@@ -171,24 +185,13 @@ export default function RootLayout({
   return (
     <html lang="pt" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/images/logo-large.jpg" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/images/logo-large.jpg"
-        />
-        <link
-          rel="icon"
-          type="image/jpeg"
-          sizes="32x32"
-          href="/images/logo-large.jpg"
-        />
-        <link
-          rel="icon"
-          type="image/jpeg"
-          sizes="16x16"
-          href="/images/logo-large.jpg"
-        />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-iphone-60x60.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-ipad-76x76.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-iphone-retina-120x120.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-ipad-retina-152x152.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
         {/* Performance optimizations */}
@@ -230,6 +233,25 @@ export default function RootLayout({
             __html: JSON.stringify(faqSchema),
           }}
         />
+        
+        {/* Breadcrumb Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://amormeco.pt"
+                }
+              ]
+            }),
+          }}
+        />
 
         {/* Theme initialization script */}
         <script
@@ -265,9 +287,9 @@ export default function RootLayout({
                 </Suspense>
                 <Footer />
                 <ScrollToTop />
-                <CookieBanner />
+                {/* <CookieBanner />
                 <Analytics />
-                <CookieSettings />
+                <CookieSettings /> */}
                 <Toaster
                   position="top-right"
                   toastOptions={{

@@ -49,8 +49,10 @@ export default function Hero() {
           >
             <img
               src="/images/logo-large.jpg"
-              alt="Amor Meco Restaurant Logo em Aldeia do Meco"
+              alt="Amor Meco Restaurant Logo - Restaurante de cozinha portuguesa autêntica em Aldeia do Meco, Setúbal"
               className="w-20 h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full object-cover mx-auto shadow-2xl border-4 border-white/20"
+              width="128"
+              height="128"
             />
           </motion.div>
 

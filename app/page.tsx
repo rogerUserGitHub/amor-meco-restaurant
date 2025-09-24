@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect } from 'react';
 import Hero from '@/components/Hero';
 import Menu from '@/components/Menu';
@@ -9,94 +7,63 @@ import Reservations from '@/components/Reservations';
 import Contact from '@/components/Contact';
 import About from '@/components/About';
 import Reviews from '@/components/Reviews';
+import { Metadata } from 'next';
+import HomeClient from './HomeClient';
 
 export default function Home() {
-  useEffect(() => {
-    // Handle hash-based routing on page load
-    const handleHashRouting = () => {
-      const hash = window.location.hash.substring(1); // Remove the #
-      if (hash) {
-        const element = document.getElementById(hash);
-        if (element) {
-          // Wait for the page to fully load before scrolling
-          setTimeout(() => {
-            const navHeight = 80; // Navigation bar height
-            const elementPosition = element.offsetTop - navHeight;
-            window.scrollTo({
-              top: elementPosition,
-              behavior: 'smooth',
-            });
-          }, 100);
-        }
-      }
-    };
+  return <HomeClient />;
+}
 
-    // Handle initial load
-    handleHashRouting();
-
-    // Handle hash changes (when user navigates with browser back/forward)
-    const handleHashChange = () => {
-      handleHashRouting();
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  return (
-    <div className="relative">
-      {/* Hero Section */}
-      <Hero />
-
-      {/* Menu Section */}
-      <section id="menu" className="section-padding bg-white dark:bg-gray-900">
-        <Menu />
-      </section>
-
-      {/* Reservations Section */}
-      <section
-        id="reservations"
-        className="section-padding bg-gray-50 dark:bg-gray-800"
-      >
-        <Reservations />
-      </section>
-
-      {/* Event Booking Section */}
-      <section
-        id="events"
-        className="section-padding bg-white dark:bg-gray-900"
-      >
-        <EventBooking />
-      </section>
-
-      {/* Gallery Section */}
-      <section
-        id="gallery"
-        className="section-padding bg-gray-50 dark:bg-gray-800"
-      >
-        <Gallery />
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="section-padding bg-white dark:bg-gray-900">
-        <About />
-      </section>
-
-      {/* Reviews Section */}
-      <section
-        id="reviews"
-        className="section-padding bg-gray-50 dark:bg-gray-800"
-      >
-        <Reviews />
-      </section>
-
-      {/* Contact Section */}
-      <section
-        id="contact"
-        className="section-padding bg-white dark:bg-gray-900"
-      >
-        <Contact />
-      </section>
-    </div>
-  );
+export const metadata: Metadata = {
+  title: 'Restaurante Amor Meco | Cozinha Portuguesa em Aldeia do Meco',
+  description: 'Descubra a autêntica cozinha portuguesa no Amor Meco. Localizado em Aldeia do Meco, Setúbal. Reservas, eventos e experiências gastronómicas únicas.',
+  keywords: 'restaurante Aldeia do Meco, cozinha portuguesa Setúbal, Amor Meco, reservas restaurante, eventos privados, jantar Sesimbra, restaurante Setúbal',
+  authors: [{ name: 'Amor Meco Restaurant' }],
+  creator: 'Amor Meco Restaurant',
+  publisher: 'Amor Meco Restaurant',
+  metadataBase: new URL('https://amormeco.pt'),
+  openGraph: {
+    title: 'Restaurante Amor Meco | Cozinha Portuguesa Autêntica',
+    description: 'Experiência gastronómica única em Aldeia do Meco, Setúbal. Cozinha portuguesa tradicional com influências internacionais.',
+    url: 'https://amormeco.pt',
+    siteName: 'Amor Meco Restaurant',
+    images: [
+      {
+        url: '/images/logo-large.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Restaurante Amor Meco em Aldeia do Meco - Cozinha Portuguesa Autêntica',
+      },
+    ],
+    locale: 'pt_PT',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Restaurante Amor Meco | Cozinha Portuguesa Autêntica',
+    description: 'Experiência gastronómica única em Aldeia do Meco, Setúbal',
+    images: ['/images/logo-large.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://amormeco.pt',
+    languages: {
+      'pt-PT': 'https://amormeco.pt',
+      'en-US': 'https://amormeco.pt/en',
+      'nl-NL': 'https://amormeco.pt/nl',
+      'es-ES': 'https://amormeco.pt/es',
+      'fr-FR': 'https://amormeco.pt/fr',
+      'de-DE': 'https://amormeco.pt/de',
+    },
+  },
 }

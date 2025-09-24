@@ -20,9 +20,11 @@ export default function Reservations() {
           <div className="relative mb-8">
             <img
               src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              alt="Área de jantar do restaurante Amor Meco em Aldeia do Meco"
+              alt="Elegante área de jantar do restaurante Amor Meco em Aldeia do Meco, Setúbal - mesas preparadas para uma experiência gastronómica única"
               className="w-full h-96 object-cover rounded-2xl"
               loading="lazy"
+              width="800"
+              height="400"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-2xl"></div>
           </div>

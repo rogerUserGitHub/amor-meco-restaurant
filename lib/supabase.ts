@@ -38,6 +38,7 @@ export async function submitContactForm(
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     if (!supabaseUrl || !supabaseAnonKey) {
+      console.log(supabaseUrl, supabaseAnonKey);
       throw new Error('Supabase configuration not available');
     }
 

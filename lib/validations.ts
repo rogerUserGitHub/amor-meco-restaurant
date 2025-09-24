@@ -8,8 +8,8 @@ const SECURITY_PATTERNS = {
   SUBJECT_PATTERN: /^[a-zA-Z0-9À-ÿ\s\-'.,!?()]+$/,
   // Allow letters, numbers, spaces, common punctuation for messages
   MESSAGE_PATTERN: /^[a-zA-Z0-9À-ÿ\s\-'.,!?()@#$%&*+=<>[\]{}|\\/:;]+$/,
-  // Phone number pattern (international format)
-  PHONE_PATTERN: /^[\+]?[1-9][\d\s\-\(\)]{0,20}$/,
+  // Phone number pattern (just needs to contain numbers)
+  PHONE_PATTERN: /\d/,
   // Prevent common SQL injection patterns
   SQL_INJECTION_PATTERN:
     /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|UNION|SCRIPT|JAVASCRIPT|ONLOAD|ONERROR|ONCLICK)\b)|(['";\\])/i,
@@ -235,7 +235,7 @@ export const reservationFormSchema = yup.object({
     .string()
     .required('Phone number is required')
     .matches(
-      /^[\+]?[1-9][\d\s\-\(\)]{0,20}$/,
+      SECURITY_PATTERNS.PHONE_PATTERN,
       'Please enter a valid phone number'
     )
     .test('no-sql-injection', 'Invalid characters detected', (value) => {

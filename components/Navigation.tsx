@@ -166,7 +166,9 @@ export default function Navigation() {
             {/* Logo Image */}
             <img
               src="/images/logo-large.jpg"
-              alt="Amor Meco Restaurant Logo"
+              alt="Amor Meco Restaurant Logo - Restaurante de cozinha portuguesa em Aldeia do Meco, Setúbal"
+              width="40"
+              height="40"
               className="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover"
             />
             <a
