@@ -1,56 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Add these lines for static export
+  output: 'export',
+  trailingSlash: true,
+  
   // Performance optimizations
   swcMinify: true,
   compress: true,
   poweredByHeader: false,
 
-  // Image optimizations
+  // Image optimizations - MUST be unoptimized for static export
   images: {
+    unoptimized: true, // Required for static export
     domains: ['images.unsplash.com', 'via.placeholder.com'],
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60,
   },
 
   // Experimental features for performance
   experimental: {
     optimizeCss: false,
     optimizePackageImports: ['lucide-react', 'framer-motion'],
-  },
-
-  // Internationalization
-  i18n: {
-    locales: ['pt', 'nl', 'en', 'es'],
-    defaultLocale: 'pt',
-    localeDetection: false,
-  },
-
-  // Security headers
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-          // Performance headers
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-        ],
-      },
-    ];
   },
 
   // Webpack optimizations

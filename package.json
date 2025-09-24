@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
+    "static-build": "next build && next export",
     "setup": "node scripts/setup-env.js"
   },
   "dependencies": {
