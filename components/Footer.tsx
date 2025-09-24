@@ -229,7 +229,7 @@ export default function Footer() {
               <span className="text-gray-500 text-xs">
                 designed by{' '}
                 <a
-                  href="https://github.com/rogerUserGitHub"
+                  href="https://dirkx.dev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-gold transition-colors duration-200"

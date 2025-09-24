@@ -203,7 +203,7 @@ export default function RootLayout({
         />
         <link
           rel="dns-prefetch"
-          href="https://tesxjtouiayyyeglqnmr.supabase.co"
+          href="https://vaetmcvgdidnfbwznqbo.supabase.co"
         />
 
         <meta
